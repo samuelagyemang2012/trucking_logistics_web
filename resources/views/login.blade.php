@@ -32,20 +32,20 @@
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email address</label>
                                             <input type="email" class="form-control" id="email"
-                                                aria-describedby="emailHelp" placeholder="E.g. example@gmail.com">
+                                                aria-describedby="emailHelp" placeholder="E.g. example@gmail.com" required>
                                         </div>
 
                                         {{-- password --}}
                                         <div class="mb-3">
                                             <label for="password" class="form-label">Password</label>
                                             <input type="password" class="form-control" id="password"
-                                                placeholder="Password">
+                                                placeholder="Password" required>
                                         </div>
 
                                         {{-- <div class="container"> --}}
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <button type="submit" class="btn btn-warning rounded-pill">Sign in</button>
+                                                <button type="submit" class="btn btn-warning btn-lg rounded-pill">Sign in</button>
                                             </div>
                                             <div class="col-sm-6">
                                                 <p><a href="">Forgot password?</a></p>
@@ -72,7 +72,7 @@
                                                 <p class="text-secondary">Don't have an account?</p>
                                             </div>
                                             <div class="col-sm-4">
-                                                <a class="btn btn-dark rounded-pill" href="/register">Register Here</a>
+                                                <a class="btn btn-dark rounded-pill btn-lg" href="/register">Register Here</a>
 
                                             </div>
                                         </div>
