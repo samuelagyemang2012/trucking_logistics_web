@@ -1,4 +1,4 @@
-@extends('base')
+@extends('base.auth_base')
 
 @section('content')
 

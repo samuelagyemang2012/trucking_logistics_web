@@ -1,4 +1,4 @@
-@extends('base')
+@extends('base.auth_base')
 
 @section('content')
     <!-- Page Content-->
@@ -72,8 +72,9 @@
                                                 {{-- Address --}}
                                                 <div class="mb-3 ">
                                                     <label for="address" class="form-label">Address</label>
-                                                    <input type="address" class="form-control" id="tel"
-                                                        placeholder="E.g. 12 Example Street, Accra">
+                                                    <textarea name="address" class="form-control mb-2" id="address" rows="2" placeholder="Write here.."></textarea>
+                                                    {{-- <input type="address" class="form-control" id="tel"
+                                                        placeholder="E.g. 12 Example Street, Accra"> --}}
                                                 </div>
                                             </div>
                                             {{-- end right --}}
@@ -82,7 +83,7 @@
                                             <div class="col-lg-12">
 
                                                 <div class="mb-3 d-grid">
-                                                    <p class="text-muted">Upload your Certificate of Registration here</p>
+                                                    <p class="">Upload your Certificate of Registration here</p>
                                                     <div
                                                         class="preview-box d-block justify-content-center rounded  border-dashed border-theme-color overflow-hidden p-3">
                                                     </div>
@@ -91,6 +92,7 @@
                                                     <label class="btn-upload btn btn-dark mt-3" for="input-file">Upload
                                                         File</label>
                                                 </div>
+                                                <hr>
                                                 {{-- end certificate --}}
 
                                                 {{-- register btn --}}
@@ -121,7 +123,7 @@
                                                 <p class="text-secondary">Have an account already?</p>
                                             </div>
                                             <div class="col-sm-4">
-                                                <a class="btn btn-dark btn-lg rounded-pill" href="/login">Login Here</a>
+                                                <a class="btn btn-dark  rounded-pill" href="/login">Login Here</a>
 
                                             </div>
                                         </div>

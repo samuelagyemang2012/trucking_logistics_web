@@ -7,14 +7,24 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('auth/login');
 });
 
 Route::get('/register', function () {
-    return view('register');
+    return view('auth/register');
 });
 
+// later create a group for company routes
+
 Route::get('/dashboard', function () {
-    return view('dashboard_base');
+    return view('company/dashboard');
+});
+
+Route::get('/profile', function () {
+    return view('company/profile');
+});
+
+Route::get('/fleet/all', function () {
+    return view('company/fleet/all');
 });
 

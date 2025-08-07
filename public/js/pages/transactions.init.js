@@ -43,7 +43,7 @@
       offsetX: 0,
       offsetY: 0,
     },
-    labels: [ "Income","Expense" ],
+    labels: [ "Pending","Complete" ],
     colors: ["#2b3eb1", "#fc7100"],
    
     responsive: [{
