@@ -28,3 +28,7 @@ Route::get('/fleet/all', function () {
     return view('company/fleet/all');
 });
 
+Route::get('/fleet/add', function () {
+    return view('company/fleet/bulk_add');
+});
+
