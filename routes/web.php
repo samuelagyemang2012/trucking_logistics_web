@@ -24,11 +24,19 @@ Route::get('/profile', function () {
     return view('company/profile');
 });
 
-Route::get('/fleet/all', function () {
-    return view('company/fleet/all');
+Route::get('/vehicles/all', function () {
+    return view('company/vehicles/all');
 });
 
-Route::get('/fleet/add', function () {
-    return view('company/fleet/bulk_add');
+Route::get('/vehicles/add', function () {
+    return view('company/vehicles/bulk_add');
+});
+
+Route::get('/drivers/all',function(){
+     return view('company/drivers/all');
+});
+
+Route::get('/drivers/add',function(){
+     return view('company/drivers/bulk_add');
 });
 

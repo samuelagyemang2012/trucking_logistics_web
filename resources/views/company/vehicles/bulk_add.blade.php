@@ -78,26 +78,33 @@
                         <div class="col-auto">
                             {{-- <h4 class="card-title">Editable</h4> --}}
                         </div><!--end col-->
-                        <div class="">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h4>Preview</h4>
-                                </div>
-                                <div class="col-sm-6">
-                                    <button class="btn btn-lg bg-dark text-white rounded-pill"> Save</button>
-                                </div>
+                        {{-- <div class=""> --}}
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h4>Preview</h4>
+                            </div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-1"></div>
+
+                            <div class="col-sm-1">
+                                <button class="btn btn-lg bg-dark text-white rounded-pill"> Save</button>
                             </div>
 
 
-                        </div><!--end col-->
-                        <div class="col-auto ms-auto">
 
-                            <div class="bg-primary-subtle p-2 border-dashed border-primary rounded">
-                                <span class="text-primary fw-semibold">Note :</span><span class="text-primary fw-normal"> if
-                                    you want to data edit do double click on a table
-                                    row.</span>
+                            {{-- <div class="col-auto ms-auto"> --}}
+                            <div class="col-sm-6">
+                                <div class="bg-primary-subtle p-2 border-dashed border-primary rounded">
+                                    <span class="text-primary fw-semibold">Note :</span><span
+                                        class="text-primary fw-normal"> if
+                                        you want to data edit do double click on a table
+                                        row.</span>
+                                </div>
                             </div>
-                        </div><!--end col-->
+
+                        </div>
+                        {{-- </div><!--end col--> --}}
+
                     </div> <!--end row-->
                 </div><!--end card-header-->
                 <div class="card-body pt-0">

@@ -61,12 +61,13 @@
                         </div>
                     </li><!--end topbar-language--> --}}
 
-                    <li class="topbar-item">
+                    {{-- screen mode --}}
+                    {{-- <li class="topbar-item">
                         <a class="nav-link nav-icon" href="javascript:void(0);" id="light-dark-mode">
                             <i class="iconoir-half-moon dark-mode"></i>
                             <i class="iconoir-sun-light light-mode"></i>
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- <li class="dropdown topbar-item">
                         <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
@@ -290,7 +291,7 @@
     <div class="startbar d-print-none">
         <!--start brand-->
         <div class="brand">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <span>
                     <img src="{{ asset('images/logo-sm.png') }}" alt="logo-small" class="logo-sm">
                 </span>
@@ -362,10 +363,10 @@
                             <div class="collapse " id="sidebarTransactions">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/fleet/all">Vehicles</a>
+                                        <a class="nav-link" href="/vehicles/all">Vehicles</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/">Drivers</a>
+                                        <a class="nav-link" href="/drivers/all">Drivers</a>
                                     </li>
                                 </ul>
                             </div>

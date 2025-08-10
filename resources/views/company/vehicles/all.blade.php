@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                    <h4 class="page-title">Manage Fleet</h4>
+                    <h4 class="page-title">Manage Vehicles</h4>
 
                 </div><!--end page-title-box-->
             </div><!--end col-->
@@ -23,8 +23,7 @@
                             </div><!--end col-->
                             <div class="col-auto">
                                 <button class="btn bg-dark text-white rounded-pill" data-bs-toggle="modal"
-                                    data-bs-target="#addVehicle"><i class="fas fa-plus me-1"></i> Add Vehicle to
-                                    Fleet</button>
+                                    data-bs-target="#addVehicle"><i class="fas fa-plus me-1"></i> Add Vehicle</button>
                             </div><!--end col-->
                             <div class="col-auto ms-auto">
 
@@ -141,7 +140,7 @@
                                     {{-- <a class="btn btn-sm btn-outline-dark rounded-pill" name="bulk_insert">Download template</a> --}}
                                     {{-- donwnload template --}}
 
-                                    <a href="/fleet/add" class="btn btn-sm btn-dark rounded-pill" name="bulk_insert">Bulk data upload</a>
+                                    <a href="/vehicles/add" class="btn btn-sm btn-dark rounded-pill" name="bulk_insert">Bulk data upload</a>
 
 
                                 </div><!--end media body-->
