@@ -1,7 +1,6 @@
 @extends('base.auth_base')
 
 @section('content')
-
     <div class="page-wrapper">
         <!-- Page Content-->
         {{-- <div class="page-content"> --}}
@@ -71,45 +70,33 @@
                             @endif
                             {{--  --}}
 
-
-
-
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h3 class="">Welcome</h3>
-                                        <h5 class="text-secondary">Sign in to your dashboard</h5>
+                                        <h3 class="">Forgot Password</h3>
+                                        <h5 class="text-secondary">Provide the email address associated with your account to
+                                            recover your password.</h5>
                                     </div><!--end col-->
                                 </div> <!--end row-->
 
                             </div><!--end card-header-->
                             <div class="card-body pt-0">
                                 <div>
-                                    <form action="{{ route('login') }}" method="post">
+                                    <form action="{{ route('password.email') }}" method="post">
                                         {{ csrf_field() }}
 
                                         {{-- email --}}
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="email" class="form-control" name="email"
-                                                aria-describedby="emailHelp" placeholder="E.g. example@gmail.com" required>
-                                        </div>
-
-                                        {{-- password --}}
-                                        <div class="mb-3">
-                                            <label for="password" class="form-label">Password</label>
-                                            <input type="password" class="form-control" name="password"
-                                                placeholder="Password" required>
+                                                placeholder="E.g. example@gmail.com" required>
                                         </div>
 
                                         {{-- <div class="container"> --}}
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <button type="submit"
-                                                    class="btn btn-dark btn-lg rounded-pill">Login</button>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p><a href="{{ route('password.request') }}">Forgot password?</a></p>
+                                                <button type="submit" class="btn btn-dark rounded-pill">Send Reset Link
+                                                </button>
                                             </div>
                                         </div>
                                         {{-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultdemo">
@@ -121,27 +108,7 @@
                                         {{-- <button type="button" class="btn btn-danger">Cancel</button> --}}
                                     </form>
                                 </div>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <hr>
-                                        </div>
-                                    </div>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-sm-8">
-                                                <p class="text-secondary">Don't have an account?</p>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <a class="btn btn-dark rounded-pill"
-                                                    href="{{ route('show.company.register') }}">Register
-                                                    Here</a>
 
-                                            </div>
-                                        </div>
-
-                                    </div><!--end card-body-->
-                                </div>
                             </div>
                         </div>
                         <div class="col-sm-2"></div>

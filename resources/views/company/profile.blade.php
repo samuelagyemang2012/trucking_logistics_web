@@ -1,4 +1,4 @@
-@extends('base.dashboard_base')
+@extends('base.company_dashboard_base')
 
 @section('content')
 
@@ -20,7 +20,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h4 class="card-title">Personal Information</h4>
+                                <h4 class="card-title">Company Information</h4>
                             </div><!--end col-->
                             <div class="col-auto">
                                 <a href="#" class="float-end text-muted d-inline-flex text-decoration-underline"><i
@@ -32,18 +32,18 @@
 
                         <ul class="list-unstyled mb-0">
                             <li class=""><i class="las la-user-tie me-2 text-secondary fs-22 align-middle"></i>
-                                <b> Company Name </b> : 06 June 1989
+                                <b> Company Name </b> : {{$user->name}}
                             </li>
                             <li class="mt-2"><i class="las la-envelope me-2 text-secondary fs-22 align-middle"></i> <b>
-                                    Email </b> : some@gmail.com</li>
+                                    Email </b> : {{$user->email}}</li>
                             <li class="mt-2"><i class="las la-phone me-2 text-secondary fs-22 align-middle"></i> <b>
-                                    Telephone </b> : 15252565223</li>
+                                    Telephone </b> : {{$user->telephone}}</li>
                             <li class="mt-2"><i class="las la-address-card me-2 text-secondary fs-22 align-middle"></i>
                                 <b>
-                                    Tax Identification Number</b> : 9090909099
+                                    Tax Identification Number</b> : {{$company->tin_number}}
                             </li>
                             <li class="mt-2"><i class="las la-map-marker text-secondary fs-22 align-middle me-2"></i> <b>
-                                    Address </b> : 1 Alewa Street</li>
+                                    Address </b> : {{$user->address}}</li>
                         </ul>
 
                     </div><!--end card-body-->
@@ -57,7 +57,7 @@
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h4 class="card-title">Company Information</h4>
+                                    <h4 class="card-title">Edit Company Profile</h4>
                                 </div><!--end col-->
                             </div> <!--end row-->
                         </div><!--end card-header-->
@@ -66,7 +66,7 @@
                                 <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Company
                                     Name</label>
                                 <div class="col-lg-9 col-xl-8">
-                                    <input class="form-control" type="text" value="Rosa">
+                                    <input class="form-control" name="name" type="text" value="{{$user->name}}">
                                 </div>
                             </div>
                             {{-- <div class="form-group mb-3 row">
@@ -86,7 +86,7 @@
                                 </div>
                             </div> --}}
                             {{-- email --}}
-                            <div class="form-group mb-3 row">
+                            {{-- <div class="form-group mb-3 row">
                                 <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Email</label>
                                 <div class="col-lg-9 col-xl-8">
                                     <div class="input-group">
@@ -95,7 +95,7 @@
                                             placeholder="Email">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             {{-- Tel --}}
                             <div class="form-group mb-3 row">
@@ -104,14 +104,14 @@
                                 <div class="col-lg-9 col-xl-8">
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="las la-phone"></i></span>
-                                        <input type="tel" class="form-control" value="+123456789" placeholder="Phone"
-                                            aria-describedby="basic-addon1">
+                                        <input type="tel" name="telephone" class="form-control" placeholder="Telephone"
+                                            value="{{$user->telephone}}">
                                     </div>
                                 </div>
                             </div>
 
                             {{-- TIN --}}
-                            <div class="form-group mb-3 row">
+                            {{-- <div class="form-group mb-3 row">
                                 <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Tax
                                     Identification Number</label>
                                 <div class="col-lg-9 col-xl-8">
@@ -120,7 +120,7 @@
                                         <input type="text" class="form-control" value="91012901290" placeholder="TIN">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             {{-- Address --}}
                             <div class="form-group mb-3 row">
@@ -129,7 +129,7 @@
                                 <div class="col-lg-9 col-xl-8">
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="las la-map-marker"></i></span>
-                                        <input type="text" class="form-control" value="91012901290" placeholder="TIN">
+                                        <input type="text" class="form-control" value="{{$user->address}}" placeholder="1 ABC Street">
                                     </div>
                                 </div>
                             </div>
@@ -148,14 +148,14 @@
                             <h4 class="card-title">Change Password</h4>
                         </div><!--end card-header-->
                         <div class="card-body pt-0">
-                            <div class="form-group mb-3 row">
+                            {{-- <div class="form-group mb-3 row">
                                 <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Current
                                     Password</label>
                                 <div class="col-lg-9 col-xl-8">
                                     <input class="form-control" type="password" placeholder="Password">
                                     <a href="#" class="text-primary font-12">Forgot password ?</a>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="form-group mb-3 row">
                                 <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">New
                                     Password</label>

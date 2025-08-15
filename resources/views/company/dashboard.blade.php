@@ -1,4 +1,4 @@
-@extends('base.dashboard_base')
+@extends('base.company_dashboard_base')
 
 @section('content')
 
@@ -104,8 +104,9 @@
                                             <div class="card-body">
                                                 <div class="row d-flex justify-content-center">
                                                     <div class="col-9">
-                                                        <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Trucks</p>
-                                                        <h5 class="mt-1 mb-0 fw-medium">10</h5>
+                                                        <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Vehicles
+                                                        </p>
+                                                        <h5 class="mt-1 mb-0 fw-medium">{{ $vehicle_number }}</h5>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-3 align-self-center">

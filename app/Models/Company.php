@@ -15,17 +15,17 @@ class Company extends Model
 
     protected $fillable = [
         'user_id',
+        'email',
         'tin_number',
-        'company_certificate',
-        'insurance_package',
-        'number_of_vehicles',
-        'address'
+        // 'telephone',
+        // 'address',
+        'company_certificate'
     ];
 
     protected static function boot()
     {
         parent::boot();
-        static::creating(fn ($model) => $model->id = (string) Str::uuid());
+        static::creating(fn($model) => $model->id = (string) Str::uuid());
     }
 
     public function user()

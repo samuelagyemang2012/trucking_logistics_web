@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
+use Illuminate\Queue\SerializesModels;
 
-class User extends Authenticatable
+class User extends Authenticatable implements CanResetPassword
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SerializesModels;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -19,17 +21,19 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_picture',
         'gender',
-        'phone_number',
+        'telephone',
         'national_id',
+        'id_number',
         'address',
-        'role'
+        'role_id'
     ];
 
     protected static function boot()
     {
         parent::boot();
-        static::creating(fn ($model) => $model->id = (string) Str::uuid());
+        static::creating(fn($model) => $model->id = (string) Str::uuid());
     }
 
     public function company()
@@ -47,4 +51,3 @@ class User extends Authenticatable
         return $this->hasMany(JobAssignment::class, 'driver_id');
     }
 }
-

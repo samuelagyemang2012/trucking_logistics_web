@@ -9,12 +9,17 @@ return new class extends Migration {
         Schema::create('companies', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
-            $table->string('tin_number');
+            // $table->string('name')->unique();
+            // $table->string('email')->unique();
+            $table->string('tin_number')->unique();
+            // $table->string('telephone')->unique();
+            // $table->mediumText('address');
             $table->string('company_certificate')->nullable();
-            $table->string('insurance_package')->nullable();
-            $table->integer('number_of_vehicles')->default(0);
-            $table->text('address');
+            $table->string('insurance_provider')->nullable();
+            $table->integer('status')->default(12);
+            // $table->integer('number_of_vehicles')->default(0); Companies can do that when managing their fleet
             $table->timestamps();
+            $table->softDeletes('deleted_at');
         });
     }
     public function down(): void {

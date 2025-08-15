@@ -79,7 +79,7 @@
                     <p class="lead mb-4">Delivering excellence in freight transportation with reliable, efficient, and
                         cost-effective solutions tailored to your business needs.</p>
                     <div class="d-flex gap-3">
-                        <a href="/login" class="btn btn-warning btn-lg px-4 rounded-pill">Get Started Here</a>
+                        <a href="{{route('show.login')}}" class="btn btn-warning btn-lg px-4 rounded-pill">Get Started Here</a>
                         {{-- <a href="#services" class="btn btn-outline-light btn-lg px-4">Our Services</a> --}}
                     </div>
                 </div>

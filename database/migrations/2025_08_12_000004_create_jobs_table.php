@@ -9,24 +9,21 @@ return new class extends Migration {
         Schema::create('job_offers', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('customer_id')->constrained('users')->cascadeOnDelete();
-            $table->string('product_type');
-            $table->string('vehicle_requirement')->nullable();
+            $table->integer('product_type_id');
+            // $table->string('vehicle_type')->nullable();
             $table->float('weight')->nullable();
             $table->float('height')->nullable();
             $table->float('width')->nullable();
             $table->float('breadth')->nullable();
             $table->string('image')->nullable();
-            $table->string('vehicle_type');
+            $table->string('vehicle_type_id');
             $table->integer('number_of_vehicles');
             $table->date('pickup_date');
-            $table->string('pickup_point');
-            $table->string('destination_point');
-            $table->decimal('price', 12, 2)->nullable();
+            $table->string('pickup_point'); //later add longitude and latitude for map services
+            $table->string('destination_point'); //later add longitude and latitude for map services
+            $table->decimal('price', 12, 2)->nullable(); //later be calculated by distance automatically
             $table->string('insurance_package')->nullable();
-            $table->enum('status', [
-                'pending', 'accepted', 'declined',
-                'driver_inbound', 'driver_loading', 'in_transit', 'delivered'
-            ])->default('pending');
+            $table->integer('status_id')->default(1);
             $table->text('decline_reason')->nullable();
             $table->timestamps();
         });

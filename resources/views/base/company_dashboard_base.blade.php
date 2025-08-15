@@ -265,7 +265,7 @@
                             </div>
                             <div class="dropdown-divider mt-0"></div>
                             <small class="text-muted px-2 pb-1 d-block">Account</small>
-                            <a class="dropdown-item" href="/profile"><i
+                            <a class="dropdown-item" href="{{ route('company.profile') }}"><i
                                     class="las la-user fs-18 me-1 align-text-bottom"></i> Profile</a>
                             {{-- <a class="dropdown-item" href="pages-faq.html"><i
                                     class="las la-wallet fs-18 me-1 align-text-bottom"></i> Earning</a> --}}
@@ -277,8 +277,15 @@
                             <a class="dropdown-item" href="pages-faq.html"><i
                                     class="las la-question-circle fs-18 me-1 align-text-bottom"></i> Help Center</a> --}}
                             <div class="dropdown-divider mb-0"></div>
-                            <a class="dropdown-item text-danger" href="auth-login.html"><i
-                                    class="las la-power-off fs-18 me-1 align-text-bottom"></i> Logout</a>
+                            <div>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button class="dropdown-item text-danger" type="submit"><i
+                                            class="las la-power-off fs-18 me-1 align-text-bottom"></i> Logout</button>
+                                </form>
+
+                            </div>
+
                         </div>
                     </li>
                 </ul><!--end topbar-nav-->
@@ -428,7 +435,7 @@
     <script src="{{ asset('js/DynamicSelect.js') }}"></script>
     @stack('scripts')
     <script src="{{ asset('js/app.js') }}"></script>
-    
+
 
 </body>
 <!--end body-->
