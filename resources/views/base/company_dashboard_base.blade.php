@@ -320,7 +320,7 @@
                         </li> --}}
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard">
+                            <a class="nav-link" href="{{ route('company.dashboard') }}">
                                 <i class="iconoir-report-columns menu-icon"></i>
                                 <span>Dashboard</span>
                                 {{-- <span class="badge text-bg-info ms-auto">New</span> --}}
@@ -355,7 +355,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/profile">
+                            <a class="nav-link" href="{{ route('company.profile') }}">
                                 <i class="iconoir-user menu-icon"></i>
                                 <span>Profile</span>
                             </a>

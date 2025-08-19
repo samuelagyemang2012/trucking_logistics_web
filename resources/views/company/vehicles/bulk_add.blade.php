@@ -1,4 +1,4 @@
-@extends('base.dashboard_base')
+@extends('base.company_dashboard_base')
 
 @section('content')
     <!-- Page Content-->

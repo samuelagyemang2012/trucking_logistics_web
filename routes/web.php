@@ -32,32 +32,33 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 Route::group(['prefix' => 'company', 'middleware' => ['auth', 'check_company']], function () {
     Route::get('/dashboard', [CompanyController::class, 'dashboard'])->name('company.dashboard');
     Route::get('/profile', [CompanyController::class, 'showProfile'])->name('company.profile');
+    // Route::get('/dashboard', function () {
+    //     return view('company/dashboard');
+    // });
 });
 
 
-Route::get('/dashboard', function () {
-    return view('company/dashboard');
-});
 
-Route::get('/profile', function () {
-    return view('company/profile');
-});
 
-Route::get('/vehicles/all', function () {
-    return view('company/vehicles/all');
-});
+// Route::get('/profile', function () {
+//     return view('company/profile');
+// });
 
-Route::get('/vehicles/add', function () {
-    return view('company/vehicles/bulk_add');
-});
+// Route::get('/vehicles/all', function () {
+//     return view('company/vehicles/all');
+// });
 
-Route::get('/drivers/all', function () {
-    return view('company/drivers/all');
-});
+// Route::get('/vehicles/add', function () {
+//     return view('company/vehicles/bulk_add');
+// });
 
-Route::get('/drivers/add', function () {
-    return view('company/drivers/bulk_add');
-});
+// Route::get('/drivers/all', function () {
+//     return view('company/drivers/all');
+// });
+
+// Route::get('/drivers/add', function () {
+//     return view('company/drivers/bulk_add');
+// });
 
 // Route::get('/test', function () {
 

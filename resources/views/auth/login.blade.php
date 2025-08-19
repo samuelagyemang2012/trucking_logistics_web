@@ -102,6 +102,11 @@
                                                 placeholder="Password" required>
                                         </div>
 
+                                        <div class="mb-3">
+                                            <input id="remember" class="form-check-input" type="checkbox" name="remember">
+                                            <label class="form-check-label" for="remember">Remember Me</label>
+                                        </div>
+
                                         {{-- <div class="container"> --}}
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -112,11 +117,7 @@
                                                 <p><a href="{{ route('password.request') }}">Forgot password?</a></p>
                                             </div>
                                         </div>
-                                        {{-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultdemo">
-                                <label class="form-check-label" for="flexCheckDefaultdemo">
-                                    Check me out
-                                </label> --}}
-                                        {{-- </div> --}}
+
 
                                         {{-- <button type="button" class="btn btn-danger">Cancel</button> --}}
                                     </form>

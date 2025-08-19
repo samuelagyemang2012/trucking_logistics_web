@@ -24,7 +24,7 @@ class AuthController extends Controller
     public function companyRegister(Request $request)
     {
         $rules = ([
-            'name' => 'required|string|min:5|max:100',
+            'name' => 'required|string|min:2',
             'email' => 'required|email|unique:users',
             'tin_number' => 'required|string|max:11|unique:companies',
             'telephone' => 'required|numeric|unique:users',
@@ -55,7 +55,7 @@ class AuthController extends Controller
         try {
             Mail::to($user->email)->queue(new CompanyWelcomeEmail($user));
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             Log::error('Failed to queue welcome email: ' . $e->getMessage()); // Remove leading backslash statrt mail queue: php artisan queue:work
         }
 
@@ -74,7 +74,9 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($validated)) {
+        $remember = $request->has('remember');
+
+        if (Auth::attempt($validated, $remember)) {
             $user = User::where('email', $request->email)->first();
 
             // if admin
