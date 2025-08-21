@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             StatusSeeder::class,
             VehicleCategorySeeder::class,
-            VehicleTypeSeeder::class
+            VehicleTypeSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

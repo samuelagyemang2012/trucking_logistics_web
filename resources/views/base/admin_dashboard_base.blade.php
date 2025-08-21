@@ -2,10 +2,8 @@
 <html lang="en" dir="ltr" data-startbar="dark" data-bs-theme="light">
 
 <head>
-
-
     <meta charset="utf-8" />
-    <title>{{ config('app.name') }} | Company</title>
+    <title>{{ config('app.name') }} | Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="" name="author" />
@@ -320,52 +318,95 @@
                         </li> --}}
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('company.dashboard') }}">
+                            <a class="nav-link" href="{{ route('admin.dashboard') }}">
                                 <i class="iconoir-report-columns menu-icon"></i>
                                 <span>Dashboard</span>
                                 {{-- <span class="badge text-bg-info ms-auto">New</span> --}}
                             </a>
                         </li><!--end nav-item-->
 
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="payment.html">
-                                <i class="iconoir-hand-cash menu-icon"></i>
-                                <span>Payment</span>
-                            </a>
-                        </li><!--end nav-item--> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="#jobs" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="sidebarTransactions">
                                 <i class="iconoir-task-list menu-icon"></i>
-                                <span>Jobs</span>
+                                <span>Job Management</span>
                             </a>
                             <div class="collapse " id="jobs">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/">All</a>
+                                        <a class="nav-link" href="">All</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/">Pending</a>
+                                        <a class="nav-link" href="">Pending</a>
                                     </li><!--end nav-item-->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/">Completed</a>
+                                        <a class="nav-link" href="">Completed</a>
                                     </li><!--end nav-item-->
                                 </ul><!--end nav-->
                             </div><!--end startbarTables-->
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('company.profile') }}">
-                                <i class="iconoir-user menu-icon"></i>
-                                <span>Profile</span>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" href="payment.html">
+                                <i class="iconoir-community menu-icon"></i>
+                                <span>User Management</span>
                             </a>
-                        </li><!--end nav-item-->
+                        </li> --}}
 
                         <li class="nav-item">
                             <a class="nav-link" href="#sidebarTransactions" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="sidebarTransactions">
+                                <i class="iconoir-community menu-icon"></i>
+                                <span>User Management</span>
+                            </a>
+                            <div class="collapse " id="sidebarTransactions">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('admin.users.companies') }}">Companies</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('admin.users.customers') }}">Customers</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('admin.users.admins') }}">Admins</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" href="payment.html">
+                                <i class="iconoir-building menu-icon"></i>
+                                <span>Company Management</span>
+                            </a>
+                        </li> --}}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="iconoir-hand-cash menu-icon"></i>
+                                <span>Payments</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="iconoir-user menu-icon"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="iconoir-settings menu-icon"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" href="#sidebarTransactions" data-bs-toggle="collapse" role="button"
+                                aria-expanded="false" aria-controls="sidebarTransactions">
                                 <i class="iconoir-delivery-truck menu-icon"></i>
-                                <span>Fleet Management</span>
+                                <span>Manage Fleet</span>
                             </a>
                             <div class="collapse " id="sidebarTransactions">
                                 <ul class="nav flex-column">
@@ -377,7 +418,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
 
                     </ul>
                 </div>
@@ -431,7 +472,7 @@
     <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('libs/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('js/pages/index.init.js') }}"></script>
+    {{-- <script src="{{ asset('js/pages/index.init.js') }}"></script> --}}
     <script src="{{ asset('js/DynamicSelect.js') }}"></script>
     @stack('scripts')
     <script src="{{ asset('js/app.js') }}"></script>

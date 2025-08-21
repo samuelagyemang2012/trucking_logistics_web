@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -32,18 +31,18 @@
 
                         <ul class="list-unstyled mb-0">
                             <li class=""><i class="las la-user-tie me-2 text-secondary fs-22 align-middle"></i>
-                                <b> Company Name </b> : {{$user->name}}
+                                <b> Company Name </b> : {{ $user->name }}
                             </li>
                             <li class="mt-2"><i class="las la-envelope me-2 text-secondary fs-22 align-middle"></i> <b>
-                                    Email </b> : {{$user->email}}</li>
+                                    Email </b> : {{ $user->email }}</li>
                             <li class="mt-2"><i class="las la-phone me-2 text-secondary fs-22 align-middle"></i> <b>
-                                    Telephone </b> : {{$user->telephone}}</li>
+                                    Telephone </b> : {{ $user->telephone }}</li>
                             <li class="mt-2"><i class="las la-address-card me-2 text-secondary fs-22 align-middle"></i>
                                 <b>
-                                    Tax Identification Number</b> : {{$company->tin_number}}
+                                    Tax Identification Number</b> : {{ $company->tin_number }}
                             </li>
                             <li class="mt-2"><i class="las la-map-marker text-secondary fs-22 align-middle me-2"></i> <b>
-                                    Address </b> : {{$user->address}}</li>
+                                    Address </b> : {{ $user->address }}</li>
                         </ul>
 
                     </div><!--end card-body-->
@@ -66,7 +65,7 @@
                                 <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Company
                                     Name</label>
                                 <div class="col-lg-9 col-xl-8">
-                                    <input class="form-control" name="name" type="text" value="{{$user->name}}">
+                                    <input class="form-control" name="name" type="text" value="{{ $user->name }}">
                                 </div>
                             </div>
                             {{-- <div class="form-group mb-3 row">
@@ -105,7 +104,7 @@
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="las la-phone"></i></span>
                                         <input type="tel" name="telephone" class="form-control" placeholder="Telephone"
-                                            value="{{$user->telephone}}">
+                                            value="{{ $user->telephone }}">
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +128,8 @@
                                 <div class="col-lg-9 col-xl-8">
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="las la-map-marker"></i></span>
-                                        <input type="text" class="form-control" value="{{$user->address}}" placeholder="1 ABC Street">
+                                        <input type="text" class="form-control" value="{{ $user->address }}"
+                                            placeholder="1 ABC Street">
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
 
                             <div class="form-group row">
                                 <div class="col-lg-9 col-xl-8 offset-lg-3">
-                                    <button type="submit" class="btn btn-dark rounded-pill">Submit</button>
+                                    <button type="submit" class="btn btn-primary rounded-pill">Submit</button>
                                     {{-- <button type="button" class="btn btn-danger">Cancel</button> --}}
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-9 col-xl-8 offset-lg-3">
-                                    <button type="submit" class="btn btn-dark rounded-pill">Change Password</button>
+                                    <button type="submit" class="btn btn-primary rounded-pill">Change Password</button>
                                     {{-- <button type="button" class="btn btn-danger">Cancel</button> --}}
                                 </div>
                             </div>

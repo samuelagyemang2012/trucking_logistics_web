@@ -73,7 +73,7 @@
   }
   
   var chart = new ApexCharts(
-    document.querySelector("#customers"),
+    document.querySelector("#jobs"),
     options
   );
   

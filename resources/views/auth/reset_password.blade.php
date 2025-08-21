@@ -108,7 +108,7 @@
                                         {{-- <div class="container"> --}}
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <button type="submit" class="btn btn-dark rounded-pill">Reset
+                                                <button type="submit" class="btn btn-primary rounded-pill">Reset
                                                     Password</button>
                                             </div>
                                         </div>

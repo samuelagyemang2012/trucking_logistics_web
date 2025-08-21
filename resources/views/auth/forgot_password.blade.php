@@ -95,7 +95,7 @@
                                         {{-- <div class="container"> --}}
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <button type="submit" class="btn btn-dark rounded-pill">Send Reset Link
+                                                <button type="submit" class="btn btn-primary rounded-pill">Send Reset Link
                                                 </button>
                                             </div>
                                         </div>

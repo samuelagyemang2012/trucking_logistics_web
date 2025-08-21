@@ -132,7 +132,7 @@
                                                     </div>
                                                     <input type="file" id="input-file" name="company_certificate"
                                                         accept="image/*,.pdf" onchange={handleChange()} hidden />
-                                                    <label class="btn-upload btn btn-dark mt-3" for="input-file">Upload
+                                                    <label class="btn-upload btn btn-primary mt-3" for="input-file">Upload
                                                         File</label>
                                                 </div>
                                                 <hr>
@@ -166,7 +166,7 @@
                                                 <p class="text-secondary">Have an account already?</p>
                                             </div>
                                             <div class="col-sm-4">
-                                                <a class="btn btn-dark  rounded-pill"
+                                                <a class="btn btn-primary  rounded-pill"
                                                     href="{{ route('show.login') }}">Login
                                                     Here</a>
 

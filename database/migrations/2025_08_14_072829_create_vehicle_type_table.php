@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('vehicle_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('category_id');
+            $table->id();
+            $table->foreignId('vehicle_category_id')->constrained('vehicle_categories')->cascadeOnDelete();
             $table->string('name');
             $table->timestamps();
         });

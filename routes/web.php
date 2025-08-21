@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -32,13 +34,17 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 Route::group(['prefix' => 'company', 'middleware' => ['auth', 'check_company']], function () {
     Route::get('/dashboard', [CompanyController::class, 'dashboard'])->name('company.dashboard');
     Route::get('/profile', [CompanyController::class, 'showProfile'])->name('company.profile');
-    // Route::get('/dashboard', function () {
-    //     return view('company/dashboard');
-    // });
 });
 
-
-
+//Admin routes
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin']], function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/change-password', [AdminController::class, 'showChangePassword'])->name('admin.show.password.change');
+    Route::post('/change-password', [AdminController::class, 'changePassword'])->name('admin.password.change');
+    Route::get('/users/companies', [UserController::class, 'getCompanies'])->name('admin.users.companies');
+    Route::get('/users/customers', [UserController::class, 'getCustomers'])->name('admin.users.customers');
+    Route::get('/users/admins', [UserController::class, 'getAdmins'])->name('admin.users.admins');
+});
 
 // Route::get('/profile', function () {
 //     return view('company/profile');

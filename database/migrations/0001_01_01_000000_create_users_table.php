@@ -16,14 +16,14 @@ return new class extends Migration
             // $table->string('first_name');
             // $table->string('last_name');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('password');
             $table->string('profile_picture')->nullable();
             $table->string('gender')->nullable();
             $table->string('telephone')->unique();
             $table->enum('national_id', ['passport', 'ghana_card'])->default('ghana_card')->nullable();
             $table->string('id_number')->unique()->nullable();
-            $table->mediumText('address');
+            $table->mediumText('address')->nullable();
             $table->integer('role_id');
             $table->integer('status')->default(12);
             // $table->enum('role', ['customer', 'admin', 'company'])->default('customer');

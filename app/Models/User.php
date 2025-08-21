@@ -27,7 +27,8 @@ class User extends Authenticatable implements CanResetPassword
         'national_id',
         'id_number',
         'address',
-        'role_id'
+        'role_id',
+        'status'
     ];
 
     protected static function boot()

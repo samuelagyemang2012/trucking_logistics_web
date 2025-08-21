@@ -14,29 +14,29 @@ class ProductTypeSeeder extends Seeder
     public function run(): void
     {
         $products_types = [
-            ['category_id'=>1,'name'=>'Passenger Vehicles'],
-            ['category_id'=>1,'name'=>'Motorcycles'],
-            ['category_id'=>1,'name'=>'Auto Parts'],
+            ['product_category_id'=>1,'name'=>'Passenger Vehicles'],
+            ['product_category_id'=>1,'name'=>'Motorcycles'],
+            ['product_category_id'=>1,'name'=>'Auto Parts'],
 
-            ['category_id'=>2,'name'=>'Fresh Produce'],
-            ['category_id'=>2,'name'=>'Frozen Foods'],
-            ['category_id'=>2,'name'=>'Pharmaceuticals'],
-            ['category_id'=>2,'name'=>'Dairy Products'],
+            ['product_category_id'=>2,'name'=>'Fresh Produce'],
+            ['product_category_id'=>2,'name'=>'Frozen Foods'],
+            ['product_category_id'=>2,'name'=>'Pharmaceuticals'],
+            ['product_category_id'=>2,'name'=>'Dairy Products'],
 
-            ['category_id'=>3,'name'=>'Machinery'],
-            ['category_id'=>3,'name'=>'Construction Materials'],
-            ['category_id'=>3,'name'=>'Heavy Equipment'],
-            ['category_id'=>3,'name'=>'Steel Products'],
+            ['product_category_id'=>3,'name'=>'Machinery'],
+            ['product_category_id'=>3,'name'=>'Construction Materials'],
+            ['product_category_id'=>3,'name'=>'Heavy Equipment'],
+            ['product_category_id'=>3,'name'=>'Steel Products'],
 
-            ['category_id'=>4,'name'=>'Electronics'],
-            ['category_id'=>4,'name'=>'Furniture'],
-            ['category_id'=>4,'name'=>'Clothing'],
-            ['category_id'=>4,'name'=>'Packaged Goods'],
+            ['product_category_id'=>4,'name'=>'Electronics'],
+            ['product_category_id'=>4,'name'=>'Furniture'],
+            ['product_category_id'=>4,'name'=>'Clothing'],
+            ['product_category_id'=>4,'name'=>'Packaged Goods'],
 
-            ['category_id'=>5,'name'=>'Hazardous Materials'],
-            ['category_id'=>5,'name'=>'Livestock'],
-            ['category_id'=>5,'name'=>'Clothing'],
-            ['category_id'=>5,'name'=>'Luxury Goods'],
+            ['product_category_id'=>5,'name'=>'Hazardous Materials'],
+            ['product_category_id'=>5,'name'=>'Livestock'],
+            ['product_category_id'=>5,'name'=>'Clothing'],
+            ['product_category_id'=>5,'name'=>'Luxury Goods'],
         ];
 
         DB::table('product_types')->insert($products_types);

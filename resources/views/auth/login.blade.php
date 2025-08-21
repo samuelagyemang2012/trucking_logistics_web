@@ -111,7 +111,7 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <button type="submit"
-                                                    class="btn btn-dark btn-lg rounded-pill">Login</button>
+                                                    class="btn btn-primary btn-lg rounded-pill">Login</button>
                                             </div>
                                             <div class="col-sm-6">
                                                 <p><a href="{{ route('password.request') }}">Forgot password?</a></p>
@@ -134,7 +134,7 @@
                                                 <p class="text-secondary">Don't have an account?</p>
                                             </div>
                                             <div class="col-sm-4">
-                                                <a class="btn btn-dark rounded-pill"
+                                                <a class="btn btn-primary rounded-pill"
                                                     href="{{ route('show.company.register') }}">Register
                                                     Here</a>
 

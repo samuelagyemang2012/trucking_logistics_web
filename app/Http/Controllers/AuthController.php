@@ -42,6 +42,7 @@ class AuthController extends Controller
             'telephone' => $request->telephone,
             'address' => $request->address,
             'role_id' => 3,
+            'status' => 11
         ]);
 
         // dd($user);
@@ -81,8 +82,14 @@ class AuthController extends Controller
 
             // if admin
             if ($user->role_id == 1) {
-                // admin
-                dd('admin_dashboard');
+                if ($user->status == 12) {
+                    $request->session()->regenerate();
+                    return redirect()->route('admin.show.password.change')->with('info', 'Welcome! For your security, please change your password to get started.');
+                } else {
+                    // Auth::login();
+                    $request->session()->regenerate();
+                    return redirect()->route('admin.dashboard');
+                }
             }
 
             //if company
@@ -97,6 +104,8 @@ class AuthController extends Controller
                     return redirect()->route('company.dashboard');
                 }
             }
+
+            return redirect()->route('show.login')->with('danger', 'Your are not authorized to perform this action.');
         } else {
             return redirect()->route('show.login')->with('danger', 'Invalid login credentials.');
         }
