@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-
+use Laravel\Socialite\Facades\Socialite;
 
 class ApiAuthController extends Controller
 {

@@ -59,17 +59,17 @@
                                             {{-- <td>{{ Str::ucfirst($admin->national_id) }}</td> --}}
                                             {{-- <td>{{ $admin->id_number }}</td> --}}
                                             <td class="">
-                                                <a href="" class="btn btn-success"
+                                                <a href="" class="btn btn-sm btn-success"
                                                     data-bs-toggle="tooltip"data-bs-placement="top"
                                                     data-bs-original-title="View Details"><i
                                                         class="las la-eye fs-18"></i></a>
 
-                                                <a href="" class="btn btn-primary"
+                                                <a href="" class="btn btn-sm btn-primary"
                                                     data-bs-toggle="tooltip"data-bs-placement="top"
                                                     data-bs-original-title="View Fleet"><i
                                                         class="las la-truck fs-18"></i></a>
 
-                                                <a href="" class="btn btn-danger"
+                                                <a href="" class="btn btn-sm btn-danger"
                                                     data-bs-toggle="tooltip"data-bs-placement="top"
                                                     data-bs-original-title="Deactivate Account"><i
                                                         class="las la-trash fs-18"></i></a>

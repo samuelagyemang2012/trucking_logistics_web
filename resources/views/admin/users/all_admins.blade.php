@@ -59,12 +59,12 @@
                                             <td class="">
                                                 {{-- <a href="#"><i class="las la-pen text-secondary fs-18"></i></a> --}}
                                                 {{-- <a href="#" class="btn btn-sm btn-primary">View Jobs</a> --}}
-                                                <a href="" class="btn btn-primary"
+                                                <a href="" class="btn btn-sm btn-primary"
                                                     data-bs-toggle="tooltip"data-bs-placement="top"
                                                     data-bs-original-title="View Details"><i
                                                         class="las la-eye fs-18"></i></a>
 
-                                                <a href="" class="btn btn-danger"
+                                                <a href="" class="btn btn-sm btn-danger"
                                                     data-bs-toggle="tooltip"data-bs-placement="top"
                                                     data-bs-original-title="Deactivate Account"><i
                                                         class="las la-trash fs-18"></i></a>

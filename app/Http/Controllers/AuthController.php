@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\CompanyWelcomeEmail;
 use App\Models\Company;
 use App\Models\User;
+use Exception;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log; // Add this import
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -169,5 +171,28 @@ class AuthController extends Controller
         return $status === Password::PasswordReset
             ? redirect()->route('show.login')->with('success', __($status))
             : back()->withErrors(['danger' => [__($status)]]);
+    }
+
+    public function googleRedirect(Request $request)
+    {
+        // $url = Socialite::driver('google')->stateless()->redirect()->getTargetUrl();
+        // return response()->json([
+        //     'url' => $url
+        // ]);
+
+        return Socialite::driver('google')
+            ->stateless()
+            ->redirect();
+    }
+
+    public function googleCallback(Request $request)
+    {
+        // dd($request);
+        try {
+            $google = Socialite::driver('google')->stateless()->user();
+            dd($google);
+        } catch (Exception $e) {
+            dd($e);
+        };
     }
 }
