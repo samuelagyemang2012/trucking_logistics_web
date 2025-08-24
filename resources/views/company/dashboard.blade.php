@@ -48,9 +48,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row d-flex justify-content-center">
+
                             <div class="col-12 col-lg-4">
-                                <div id="customers" class="apex-charts"></div>
+                                <div id="company_dashboard" class="apex-charts"></div>
                             </div><!--end col-->
+
                             <div class="col-12 col-lg-8">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -288,6 +290,6 @@
     @push('scripts')
         <script src="{{ asset('libs/vanilla-datatables/vanilla-dataTables.min.js') }}"></script>
         <script src="{{ asset('js/pages/editable.init.js') }}"></script>
-        <script src="{{ asset('js/pages/transactions.init.js') }}"></script>
+        <script src="{{ asset('js/pages/company/company_dashboard.init.js') }}"></script>
     @endpush
 @stop

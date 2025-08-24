@@ -318,48 +318,44 @@
                         </li> --}}
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                            <a class="nav-link text-secondary" href="{{ route('admin.dashboard') }}">
                                 <i class="iconoir-report-columns menu-icon"></i>
                                 <span>Dashboard</span>
                                 {{-- <span class="badge text-bg-info ms-auto">New</span> --}}
                             </a>
-                        </li><!--end nav-item-->
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#jobs" data-bs-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="sidebarTransactions">
-                                <i class="iconoir-task-list menu-icon"></i>
-                                <span>Job Management</span>
-                            </a>
-                            <div class="collapse " id="jobs">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="">All</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="">Pending</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="">Completed</a>
-                                    </li><!--end nav-item-->
-                                </ul><!--end nav-->
-                            </div><!--end startbarTables-->
                         </li>
 
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="payment.html">
-                                <i class="iconoir-community menu-icon"></i>
-                                <span>User Management</span>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary collapsed" href="#posts" data-bs-toggle="collapse"
+                                role="button" aria-expanded="false" aria-controls="posts">
+                                <i class="iconoir-task-list menu-icon"></i>
+                                <span>Jobs</span>
                             </a>
-                        </li> --}}
+                            <div class="collapse " id="posts">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/">All</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/">Pending</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/">In Transit</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/">Completed</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#sidebarTransactions" data-bs-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="sidebarTransactions">
+                            <a class="nav-link text-secondary collapsed" href="#users" data-bs-toggle="collapse"
+                                role="button" aria-expanded="false" aria-controls="users">
                                 <i class="iconoir-community menu-icon"></i>
                                 <span>User Management</span>
                             </a>
-                            <div class="collapse " id="sidebarTransactions">
+                            <div class="collapse " id="users" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('admin.users.companies') }}">Companies</a>
@@ -374,52 +370,26 @@
                             </div>
                         </li>
 
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="payment.html">
-                                <i class="iconoir-building menu-icon"></i>
-                                <span>Company Management</span>
-                            </a>
-                        </li> --}}
-
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link text-secondary" href="{{ route('admin.dashboard') }}">
                                 <i class="iconoir-hand-cash menu-icon"></i>
                                 <span>Payments</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link text-secondary" href="{{ route('admin.dashboard') }}">
                                 <i class="iconoir-user menu-icon"></i>
                                 <span>Profile</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link text-secondary" href="{{ route('admin.dashboard') }}">
                                 <i class="iconoir-settings menu-icon"></i>
                                 <span>Settings</span>
                             </a>
                         </li>
-
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="#sidebarTransactions" data-bs-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="sidebarTransactions">
-                                <i class="iconoir-delivery-truck menu-icon"></i>
-                                <span>Manage Fleet</span>
-                            </a>
-                            <div class="collapse " id="sidebarTransactions">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/vehicles/all">Vehicles</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/drivers/all">Drivers</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
-
                     </ul>
                 </div>
                 </li>

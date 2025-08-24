@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +28,6 @@ Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name
 
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
-
-Route::get('/auth/google/redirect', [AuthController::class, 'googleRedirect'])->name('google.redirect');
-Route::get('/auth/google/callback', [AuthController::class, 'googleCallback'])->name('google.callback');
 // ---------end Auth----------------
 
 // Company routes

@@ -19,8 +19,8 @@ class User extends Authenticatable implements CanResetPassword
 
     protected $fillable = [
         'name',
+        'google_id',
         'email',
-        'password',
         'profile_picture',
         'gender',
         'telephone',
@@ -30,6 +30,12 @@ class User extends Authenticatable implements CanResetPassword
         'role_id',
         'status'
     ];
+
+    protected $hidden = [
+        'password',
+        'remember_token'
+    ];
+
 
     protected static function boot()
     {
