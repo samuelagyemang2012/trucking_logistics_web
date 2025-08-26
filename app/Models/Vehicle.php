@@ -14,16 +14,21 @@ class Vehicle extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'company_id',
         'type',
+        'company_id',
+        'model',
+        'registration_number',
         'number_plate',
-        'status'
+        'mileage',
+        'payload',
+        'manufacture_year',
+        'status_id'
     ];
 
     protected static function boot()
     {
         parent::boot();
-        static::creating(fn ($model) => $model->id = (string) Str::uuid());
+        static::creating(fn($model) => $model->id = (string) Str::uuid());
     }
 
     public function company()
@@ -35,5 +40,14 @@ class Vehicle extends Model
     {
         return $this->hasMany(JobAssignment::class);
     }
-}
 
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id', 'id');
+    }
+
+    public function vehicle_type()
+    {
+        return $this->belongsTo(VehicleType::class, 'type', 'id');
+    }
+}

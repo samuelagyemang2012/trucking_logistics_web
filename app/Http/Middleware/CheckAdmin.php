@@ -25,9 +25,11 @@ class CheckAdmin
                 return redirect()->route('show.login')->with('danger', 'Your are not authorized to perform this action.');
             }
 
-            // if ($user->status = 12) {
-            //     return redirect()->route('admin.password.change')->with('info', 'Welcome! For your security, please update your password to get started.');
-            // }
+            if ($user->status != 12) {
+                Auth::logout();
+                $request->session()->invalidate();
+                return redirect()->route('show.login')->with('danger', 'Your account is deactivated.');
+            }
         }
 
         return $next($request);

@@ -69,10 +69,6 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            {{--  --}}
-
-
-
 
                             <div class="card-header">
                                 <div class="row align-items-center">

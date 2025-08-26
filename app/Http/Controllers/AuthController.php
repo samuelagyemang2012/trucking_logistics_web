@@ -43,7 +43,7 @@ class AuthController extends Controller
             'telephone' => $request->telephone,
             'address' => $request->address,
             'role_id' => 3,
-            'status' => 11
+            'status' => 12
         ]);
 
         // dd($user);
@@ -85,28 +85,21 @@ class AuthController extends Controller
             if ($user->role_id == 1) {
                 if ($user->status == 12) {
                     $request->session()->regenerate();
-                    return redirect()->route('admin.show.password.change')->with('info', 'Welcome! For your security, please change your password to get started.');
-                } else {
-                    // Auth::login();
-                    $request->session()->regenerate();
                     return redirect()->route('admin.dashboard');
+                } else {
+                    return redirect()->route('show.login')->with('danger', 'Your account is deactivated.');
                 }
             }
 
             //if company
             if ($user->role_id == 3) {
-                //Check if account is verified
-                //if not 
                 if ($user->status == 12) {
-                    return redirect()->route('show.login')->with('info', 'Your account has not be approved yet.');
-                } else {
-                    // Auth::login();
                     $request->session()->regenerate();
                     return redirect()->route('company.dashboard');
+                } else {
+                    return redirect()->route('show.login')->with('danger', 'Your account is deactivated.');
                 }
             }
-
-            return redirect()->route('show.login')->with('danger', 'Your are not authorized to perform this action.');
         } else {
             return redirect()->route('show.login')->with('danger', 'Invalid login credentials.');
         }

@@ -13,7 +13,7 @@
         </div><!--end row-->
 
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-md-5">
 
                 <div class="card">
                     <div class="card-header">
@@ -48,7 +48,7 @@
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div> <!--end col-->
-            <div class="col-md-8">
+            <div class="col-md-7">
 
                 <div class="">
 

@@ -14,8 +14,8 @@ class VehicleTypeSeeder extends Seeder
     public function run(): void
     {
         $types = [
-            ['vehicle_category_id' => 1, 'name' => 'Pickup Trucks'],
-            ['vehicle_category_id' => 1, 'name' => 'Box Trucks'],
+            ['vehicle_category_id' => 1, 'name' => 'Pickup Truck'],
+            ['vehicle_category_id' => 1, 'name' => 'Box Truck'],
             ['vehicle_category_id' => 1, 'name' => 'Flatbed Truck'],
             ['vehicle_category_id' => 1, 'name' => 'Refrigerated Truck'],
             ['vehicle_category_id' => 1, 'name' => 'Dump Truck'],
@@ -30,12 +30,12 @@ class VehicleTypeSeeder extends Seeder
             ['vehicle_category_id' => 3, 'name' => 'Hazardous Material Transporter'],
             ['vehicle_category_id' => 3, 'name' => 'Armored Vehicle'],
             ['vehicle_category_id' => 3, 'name' => 'Excavator'],
-            ['vehicle_category_id' => 3, 'name' => 'Dry Van Trailers'],
+            ['vehicle_category_id' => 3, 'name' => 'Dry Van Trailer'],
 
-            ['vehicle_category_id' => 4, 'name' => 'Flatbed Trailers'],
-            ['vehicle_category_id' => 4, 'name' => 'Refrigerated Trailers'],
-            ['vehicle_category_id' => 4, 'name' => 'Lowboy Trailers'],
-            ['vehicle_category_id' => 4, 'name' => 'Tank Trailers']
+            ['vehicle_category_id' => 4, 'name' => 'Flatbed Trailer'],
+            ['vehicle_category_id' => 4, 'name' => 'Refrigerated Trailer'],
+            ['vehicle_category_id' => 4, 'name' => 'Lowboy Trailer'],
+            ['vehicle_category_id' => 4, 'name' => 'Tank Trailer']
         ];
 
         DB::table('vehicle_types')->insert($types);

@@ -24,10 +24,11 @@ class StatusSeeder extends Seeder
             ['name' => 'Available'],
             ['name' => 'Under Maintenance'],
             ['name' => 'Out of Service'],
+            ['name' => 'In Use'],
             ['name' => 'Active'],
             ['name' => 'Inactive']
         ];
 
-        DB::table('status')->insert($statuses);
+        DB::table('statuses')->insert($statuses);
     }
 }

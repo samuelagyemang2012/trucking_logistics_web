@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -34,7 +35,10 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 Route::group(['prefix' => 'company', 'middleware' => ['auth', 'check_company']], function () {
     Route::get('/dashboard', [CompanyController::class, 'dashboard'])->name('company.dashboard');
     Route::get('/profile', [CompanyController::class, 'showProfile'])->name('company.profile');
+    Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
+    Route::post('/vehicles/add', [VehicleController::class, 'add'])->name('vehicles.add');
 });
+
 
 //Admin routes
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin']], function () {

@@ -16,7 +16,7 @@ return new class extends Migration {
             // $table->mediumText('address');
             $table->string('company_certificate')->nullable();
             $table->string('insurance_provider')->nullable();
-            $table->integer('status')->default(12);
+            // $table->integer('status')->default(12);
             // $table->integer('number_of_vehicles')->default(0); Companies can do that when managing their fleet
             $table->timestamps();
             $table->softDeletes('deleted_at');

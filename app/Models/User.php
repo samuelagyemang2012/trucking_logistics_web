@@ -21,6 +21,7 @@ class User extends Authenticatable implements CanResetPassword
         'name',
         'google_id',
         'email',
+        'password',
         'profile_picture',
         'gender',
         'telephone',
@@ -28,7 +29,8 @@ class User extends Authenticatable implements CanResetPassword
         'id_number',
         'address',
         'role_id',
-        'status'
+        'status',
+        'remember_token'
     ];
 
     protected $hidden = [

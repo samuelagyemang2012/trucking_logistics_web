@@ -26,8 +26,10 @@ class CheckCompany
                 return redirect()->route('show.login')->with('danger', 'Your are not authorized to perform this action.');
             }
 
-            if ($user->status != 11) {
-                return redirect()->route('show.login')->with('info', 'Your account is pending verification.');
+            if ($user->status != 12) {
+                Auth::logout();
+                $request->session()->invalidate();
+                return redirect()->route('show.login')->with('danger', 'Your account is deactivated.');
             }
         }
 

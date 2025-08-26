@@ -33,8 +33,13 @@ class Company extends Model
         return $this->belongsTo(User::class);
     }
 
+    // public function vehicles()
+    // {
+    //     return $this->hasMany(Vehicle::class);
+    // }
+
     public function vehicles()
     {
-        return $this->hasMany(Vehicle::class);
+        return $this->hasMany(Vehicle::class, 'company_id', 'id');
     }
 }
