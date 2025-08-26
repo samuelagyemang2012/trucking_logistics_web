@@ -32,19 +32,21 @@ class VehiclesDataTable extends DataTable
             ->editColumn('status_id', function ($vehicle) {
 
                 if ($vehicle->status->name == 'Available') {
-                    return '<span class="badge bg-transparent border border-success text-success">' . $vehicle->status->name . '</span>';
+                    return '<span class="badge bg-success-subtle text-success">' . $vehicle->status->name . '</span>';
                 } elseif ($vehicle->status->name == 'Out of Service') {
-                    return '<span class="badge bg-transparent border border-danger text-danger">' . $vehicle->status->name . '</span>';
+                    return '<span class="badge bg-danger-subtle text-danger">' . $vehicle->status->name . '</span>';
+                } elseif ($vehicle->status->name == 'In Use') {
+                    return '<span class="badge bg-primary-subtle text-primary">' . $vehicle->status->name . '</span>';
+                } else {
+                    return '<span class="badge bg-secondary-subtle text-secondary">' . $vehicle->status->name . '</span>';
                 }
-
-                return '<span class="badge bg-transparent border border-secondary text-secondary">' . $vehicle->status->name . '</span>';
             })
 
             ->addColumn('action',  function ($vehicle) {
-                $btn = '<div class="btn-group" role="group">';
-                $btn .= '<a href="/edit/' . $vehicle->id . '" class="btn btn-sm btn-outline-primary"><i class="las la-pen fs-18"></i></a>';
-                $btn .= '<a href="/delete/' . $vehicle->id . ' "class="btn btn-sm btn-outline-danger"><i class="las la-trash fs-18"></i></a>';
-                $btn .= '</div>';
+                $btn = "<div class='btn-group' role='group'>";
+                $btn .= "<button class='btn btn-sm btn-outline-primary' data-bs-toggle='modal' data-bs-target='#editVehicle' onclick='get_vehicle(\"{$vehicle->id}\")'><i class='las la-pen fs-18'></i></button>";
+                $btn .= "<button class='btn btn-sm btn-outline-danger' data-bs-toggle='modal' data-bs-target='#deleteVehicle' onclick='delete_vehicle(\"{$vehicle->id}\")'><i class='las la-trash fs-18'></i></button>";
+                $btn .= "</div>";
 
                 return $btn;
             })

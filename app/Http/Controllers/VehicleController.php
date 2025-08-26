@@ -59,4 +59,67 @@ class VehicleController extends Controller
 
         return redirect()->route('vehicles.index')->with('success', $vehicle->model . ' added successfully.');
     }
+
+    public function get($id)
+    {
+        $vehicle = Vehicle::where(['id' => $id])->first();
+        return  response()->json(['vehicle' => $vehicle]);
+    }
+
+    public function update(Request $request)
+    {
+        $rules = ([
+            'vehicle_id' => 'required',
+            'vehicle_type' => 'required|numeric',
+            'model' => 'required|string',
+            'registration_number' => 'required',
+            'number_plate' => 'required|string',
+            'mileage' => 'numeric|nullable',
+            'payload' => 'numeric|nullable',
+            'manufacture_year' => 'numeric|min:1900|nullable',
+            'status' => 'required|numeric'
+        ]);
+
+        $this->validate($request, $rules);
+
+        // $user = Auth::user();
+        // $company = Company::where(['user_id' => $user->id])->first();
+
+        $vehicle = Vehicle::find($request->vehicle_id);
+        // dd($vehicle);
+
+        if ($vehicle) {
+            $vehicle->type = $request->vehicle_type;
+            $vehicle->model = $request->model;
+            $vehicle->registration_number = $request->registration_number;
+            $vehicle->number_plate = $request->number_plate;
+            $vehicle->mileage = $request->mileage;
+            $vehicle->payload = $request->payload;
+            $vehicle->manufacture_year = $request->manufacture_year;
+            $vehicle->status_id =  $request->status;
+
+            $vehicle->save();
+
+            return redirect()->route('vehicles.index')->with('success', $vehicle->model . ' updated successfully.');
+        } else {
+            return redirect()->route('vehicles.index')->with('danger', 'Update failed.');
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        $rules = $request->validate([
+            'delete_id' => 'required'
+        ]);
+
+        $vehicle = Vehicle::find($request->delete_id);
+
+        if ($vehicle) {
+            $vehicle->delete();
+
+            return redirect()->route('vehicles.index')->with('success', $vehicle->model . ' deleted successfully.');
+        } else {
+            return redirect()->route('vehicles.index')->with('danger', 'Deletion failed.');
+        }
+    }
 }

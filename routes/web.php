@@ -37,6 +37,9 @@ Route::group(['prefix' => 'company', 'middleware' => ['auth', 'check_company']],
     Route::get('/profile', [CompanyController::class, 'showProfile'])->name('company.profile');
     Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
     Route::post('/vehicles/add', [VehicleController::class, 'add'])->name('vehicles.add');
+    Route::get('/vehicles/{id}', [VehicleController::class, 'get'])->name('vehicles.get');
+    Route::post('/vehicles/update', [VehicleController::class, 'update'])->name('vehicles.update');
+    Route::post('/vehicles/delete', [VehicleController::class, 'delete'])->name('vehicles.delete');
 });
 
 
