@@ -74,7 +74,7 @@
                             <span class="alert-badge"></span>
                         </a>
                         <div class="dropdown-menu stop dropdown-menu-end dropdown-lg py-0">
-                        
+
                             <h5 class="dropdown-item-text m-0 py-3 d-flex justify-content-between align-items-center">
                                 Notifications <a href="#" class="badge text-body-tertiary badge-pill">
                                     <i class="iconoir-plus-circle fs-4"></i>
@@ -130,7 +130,7 @@
                                         <a href="#" class="dropdown-item py-3">
                                             <small class="float-end text-muted ps-2">40 min ago</small>
                                             <div class="d-flex align-items-center">
-                                                <div class="flex-shrink-0 bg-primary-subtle text-primary thumb-md rounded-circle">                                                    
+                                                <div class="flex-shrink-0 bg-primary-subtle text-primary thumb-md rounded-circle">
                                                     <i class="iconoir-birthday-cake fs-4"></i>
                                                 </div>
                                                 <div class="flex-grow-1 ms-2 text-truncate">
@@ -171,7 +171,7 @@
                                         <a href="#" class="dropdown-item py-3">
                                             <small class="float-end text-muted ps-2">40 min ago</small>
                                             <div class="d-flex align-items-center">
-                                                <div class="flex-shrink-0 bg-primary-subtle text-primary thumb-md rounded-circle">                                                    
+                                                <div class="flex-shrink-0 bg-primary-subtle text-primary thumb-md rounded-circle">
                                                     <i class="iconoir-birthday-cake fs-4"></i>
                                                 </div>
                                                 <div class="flex-grow-1 ms-2 text-truncate">
@@ -236,7 +236,7 @@
                                         </a><!--end-item-->
                                     </div>
                                 </div>
-                            
+
                             </div>
                             <!-- All-->
                             <a href="pages-notifications.html" class="dropdown-item text-center text-dark fs-13 py-2">
@@ -334,13 +334,13 @@
                             <div class="collapse " id="jobs">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">All</a>
+                                        <a class="nav-link" href="{{route('admin.jobs.index')}}">All</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">Pending</a>
+                                        <a class="nav-link" href="{{route('admin.jobs.index')}}">Pending</a>
                                     </li><!--end nav-item-->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">Completed</a>
+                                        <a class="nav-link" href="{{route('admin.jobs.index')}}">Completed</a>
                                     </li><!--end nav-item-->
                                 </ul><!--end nav-->
                             </div><!--end startbarTables-->
@@ -469,6 +469,7 @@
     <!-- Javascript  -->
     <!-- vendor js -->
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('libs/apexcharts/apexcharts.min.js') }}"></script>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
@@ -43,6 +44,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin']], fun
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/change-password', [AdminController::class, 'showChangePassword'])->name('admin.show.password.change');
     Route::post('/change-password', [AdminController::class, 'changePassword'])->name('admin.password.change');
+
+    Route::resource('jobs', JobController::class)->names('admin.jobs');
+
+
     Route::get('/users/companies', [UserController::class, 'getCompanies'])->name('admin.users.companies');
     Route::get('/users/customers', [UserController::class, 'getCustomers'])->name('admin.users.customers');
     Route::get('/users/admins', [UserController::class, 'getAdmins'])->name('admin.users.admins');

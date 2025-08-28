@@ -78,10 +78,8 @@ class AuthController extends Controller
         ]);
 
         $remember = $request->has('remember');
-
         if (Auth::attempt($validated, $remember)) {
             $user = User::where('email', $request->email)->first();
-
             // if admin
             if ($user->role_id == 1) {
                 if ($user->status == 12) {
@@ -97,7 +95,7 @@ class AuthController extends Controller
             //if company
             if ($user->role_id == 3) {
                 //Check if account is verified
-                //if not 
+                //if not
                 if ($user->status == 12) {
                     return redirect()->route('show.login')->with('info', 'Your account has not be approved yet.');
                 } else {

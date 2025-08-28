@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'id' => Str::uuid(),
             'name' => 'John Doe',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('12345678'),
+                'password' => Hash::make('12345678'),
             'telephone' => "1234509896",
             'address' => '4 Dansoman Downtown Street',
             'role_id' => 1,

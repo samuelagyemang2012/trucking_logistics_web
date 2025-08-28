@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
 use Illuminate\Queue\SerializesModels;
 
-class User extends Authenticatable implements CanResetPassword
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SerializesModels;
 
