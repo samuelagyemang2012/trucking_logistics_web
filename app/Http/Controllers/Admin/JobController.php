@@ -16,11 +16,24 @@ use Illuminate\Support\Str;
 
 class JobController extends Controller
 {
-    public function index()
+    public function index(Request $request): object
     {
+        $status = $request->query('status');
+
+        if($status === 'pending')
+        {
+            $jobs = Job::query()->where('status_id',1);
+        }else if($status === 'completed'){
+            $jobs = Job::query()->where('status_id',3);
+        }
+        else if($status === 'all'){
+            $jobs = Job::query();
+        }else {
+            $jobs = Job::query();
+        }
 
 
-        $jobs = Job::latest()->paginate(10);
+        $jobs = $jobs->latest()->paginate(10);
         $customers = User::all();
         $productTypes = ProductType::all();
         $vehicleTypes = VehicleType::all();

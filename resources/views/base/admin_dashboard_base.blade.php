@@ -334,13 +334,13 @@
                             <div class="collapse " id="jobs">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('admin.jobs.index')}}">All</a>
+                                        <a class="nav-link" href="{{route('admin.jobs.index',['status'=>'all'])}}">All</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('admin.jobs.index')}}">Pending</a>
+                                        <a class="nav-link" href="{{route('admin.jobs.index',['status'=>'pending'])}}">Pending</a>
                                     </li><!--end nav-item-->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('admin.jobs.index')}}">Completed</a>
+                                        <a class="nav-link" href="{{route('admin.jobs.index',['status'=>'completed'])}}">Completed</a>
                                     </li><!--end nav-item-->
                                 </ul><!--end nav-->
                             </div><!--end startbarTables-->
