@@ -6,17 +6,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                    <h4 class="page-title">Dashboard</h4>
-                    {{-- <div class="">
-                                <ol class="breadcrumb mb-0">
-                                    <li class="breadcrumb-item"><a href="#">Approx</a>
-                                    </li><!--end nav-item-->
-                                    <li class="breadcrumb-item active">Dashboard</li>
-                                </ol>
-                            </div>                             --}}
-                </div><!--end page-title-box-->
-            </div><!--end col-->
-        </div><!--end row-->
+                    <h4 class="page-title">{{ $name }}</h4>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-12 col-lg-3">
@@ -60,7 +53,7 @@
                                             <div class="card-body">
                                                 <div class="row d-flex justify-content-center">
                                                     <div class="col-9">
-                                                        <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Pending
+                                                        <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Jobs
                                                         </p>
                                                         <h5 class="mt-1 mb-0 fw-medium">2</h5>
                                                     </div>
@@ -83,15 +76,15 @@
                                             <div class="card-body">
                                                 <div class="row d-flex justify-content-center">
                                                     <div class="col-9">
-                                                        <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Completed
+                                                        <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Drivers
                                                         </p>
-                                                        <h5 class="mt-1 mb-0 fw-small">40</h5>
+                                                        <h5 class="mt-1 mb-0 fw-small">{{ $drivers_number }}</h5>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-3 align-self-center">
                                                         <div
                                                             class="d-flex justify-content-center align-items-center thumb-md rounded mx-auto">
-                                                            <i class="iconoir-task-list fs-22 align-self-center mb-0"></i>
+                                                            <i class="iconoir-user fs-22 align-self-center mb-0"></i>
                                                         </div>
                                                     </div>
                                                     <!--end col-->

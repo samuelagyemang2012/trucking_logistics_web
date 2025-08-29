@@ -3,7 +3,9 @@
 namespace App\DataTables;
 
 use App\Models\Company;
-use App\Models\Vehicle;
+use App\Models\Driver;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
@@ -15,59 +17,62 @@ use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use Illuminate\Support\Str;
 
-class VehiclesDataTable extends DataTable
+class DriversDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder<Vehicle> $query Results from query() method.
+     * @param QueryBuilder<Driver> $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->editColumn('type', function ($vehicle) {
-                return $vehicle->vehicle_type->name;
+            ->editColumn('name', function ($driver) {
+                return Str::title($driver->name);
             })
-            ->editColumn('model', function ($vehicle) {
-                return Str::title($vehicle->model);
-            })
-            ->editColumn('status_id', function ($vehicle) {
-
-                if ($vehicle->status->name == 'Available') {
-                    return '<span class="badge bg-success-subtle text-success">' . $vehicle->status->name . '</span>';
-                } elseif ($vehicle->status->name == 'Out of Service') {
-                    return '<span class="badge bg-danger-subtle text-danger">' . $vehicle->status->name . '</span>';
-                } elseif ($vehicle->status->name == 'In Use') {
-                    return '<span class="badge bg-primary-subtle text-primary">' . $vehicle->status->name . '</span>';
+            ->editColumn('status', function ($driver) {
+                if ($driver->status == 'Active') {
+                    return '<span class="badge bg-success-subtle text-success">' . $driver->status . '</span>';
                 } else {
-                    return '<span class="badge bg-secondary-subtle text-secondary">' . $vehicle->status->name . '</span>';
+                    return '<span class="badge bg-danger-subtle text-danger">' . $driver->status . '</span>';
                 }
             })
-
-            ->addColumn('action',  function ($vehicle) {
+            ->editColumn('national_id', function ($driver) {
+                return Str::title(Str::replace("_", " ", $driver->national_id));
+            })
+            ->editColumn('created_at', function ($driver) {
+                return Carbon::parse($driver->created_at)->format('Y-m-d');
+            })
+            ->addColumn('action',  function ($driver) {
                 $btn = "<div class='btn-group' role='group'>";
-                $btn .= "<button class='btn btn-sm btn-outline-primary' data-bs-toggle='modal' data-bs-target='#editVehicle' onclick='get_vehicle(\"{$vehicle->id}\")'><i class='las la-pen fs-18'></i></button>";
-                $btn .= "<button class='btn btn-sm btn-outline-danger' data-bs-toggle='modal' data-bs-target='#deleteVehicle' onclick='delete_vehicle(\"{$vehicle->id}\")'><i class='las la-trash fs-18'></i></button>";
+                $btn .= "<button class='btn btn-sm btn-outline-primary' data-bs-toggle='modal' data-bs-target='#editDriver' onclick='get_driver(\"{$driver->id}\")'><i class='las la-pen fs-18'></i></button>";
+                $btn .= "<button class='btn btn-sm btn-outline-danger' data-bs-toggle='modal' data-bs-target='#deleteDriver' onclick='delete_driver(\"{$driver->id}\")'><i class='las la-trash fs-18'></i></button>";
                 $btn .= "</div>";
 
                 return $btn;
             })
             ->setRowId('id')
-            ->rawColumns(['status_id', 'action']);
+            ->rawColumns(['status', 'action']);
     }
 
     /**
      * Get the query source of dataTable.
      *
-     * @return QueryBuilder<Vehicle>
+     * @return QueryBuilder<Driver>
      */
-    public function query(Vehicle $model): QueryBuilder
+    public function query(Driver $model): QueryBuilder
     {
-        $user = Auth::user();
-        $company = Company::where('user_id', $user->id)->first();
-        // dd($company);
 
-        return $model->newQuery()->where('company_id',$company->id);
+        $user = Auth::user();
+        $company = Company::where('user_id', $user->id)->first(); 
+
+        return $model->newQuery()
+            ->select('users.id', 'users.name', 'users.email', 'users.telephone', 'users.national_id', 'users.id_number', 'statuses.name as status', 'users.created_at')
+            ->join('users', 'drivers.user_id', '=', 'users.id')
+            ->join('companies', 'drivers.company_id', '=', 'companies.id')
+            ->join('statuses', 'users.status', '=', 'statuses.id')
+            ->where('drivers.company_id', $company->id)
+            ->where('users.role_id', '=', 4);
     }
 
     /**
@@ -76,7 +81,7 @@ class VehiclesDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('vehicles_table')
+            ->setTableId('drivers_table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
@@ -108,17 +113,13 @@ class VehiclesDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-
-
-            // Column::make('id'),
-            Column::make('type'),
-            Column::make('model'),
-            Column::make('registration_number'),
-            Column::make('number_plate'),
-            Column::make('mileage'),
-            Column::make('payload'),
-            Column::make('manufacture_year')->title('Year'),
-            Column::make('status_id')->title('Status'),
+            Column::make('name'),
+            Column::make('email'),
+            Column::make('telephone')->title('Mobile No'),
+            Column::make('national_id')->title('ID'),
+            Column::make('id_number')->title('ID Number'),
+            Column::make('created_at')->title('Joined On'),
+            Column::make('status'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -132,6 +133,6 @@ class VehiclesDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Vehicles_' . date('YmdHis');
+        return 'Drivers_' . date('YmdHis');
     }
 }

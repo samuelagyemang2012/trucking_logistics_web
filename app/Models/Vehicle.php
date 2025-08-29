@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class Vehicle extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -31,7 +32,7 @@ class Vehicle extends Model
         static::creating(fn($model) => $model->id = (string) Str::uuid());
     }
 
-    public function company()
+    public function company() 
     {
         return $this->belongsTo(Company::class);
     }

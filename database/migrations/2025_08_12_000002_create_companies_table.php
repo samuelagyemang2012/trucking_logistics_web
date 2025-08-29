@@ -19,7 +19,7 @@ return new class extends Migration {
             // $table->integer('status')->default(12);
             // $table->integer('number_of_vehicles')->default(0); Companies can do that when managing their fleet
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
     }
     public function down(): void {

@@ -26,6 +26,7 @@ return new class extends Migration {
             $table->integer('status_id')->default(1);
             $table->text('decline_reason')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     public function down(): void {

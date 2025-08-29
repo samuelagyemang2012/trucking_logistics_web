@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->decimal('amount', 12, 2);
             $table->integer('status_id')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     public function down(): void

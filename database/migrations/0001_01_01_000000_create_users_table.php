@@ -30,7 +30,7 @@ return new class extends Migration
             // $table->enum('role', ['customer', 'admin', 'company'])->default('customer');
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

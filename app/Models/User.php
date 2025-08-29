@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -12,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 
 class User extends Authenticatable implements CanResetPassword
 {
-    use HasApiTokens, HasFactory, Notifiable, SerializesModels;
+    use HasApiTokens, HasFactory, Notifiable, SerializesModels, SoftDeletes;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -42,7 +43,17 @@ class User extends Authenticatable implements CanResetPassword
     protected static function boot()
     {
         parent::boot();
+
         static::creating(fn($model) => $model->id = (string) Str::uuid());
+
+        static::deleting(function ($user) {
+            $user->company()->delete();
+        });
+
+        static::restoring(function ($user) {
+            // Restore all comments associated with this post
+            $user->company()->restore();
+        });
     }
 
     public function company()
@@ -58,5 +69,10 @@ class User extends Authenticatable implements CanResetPassword
     public function assignedJobs()
     {
         return $this->hasMany(JobAssignment::class, 'driver_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status', 'id');
     }
 }

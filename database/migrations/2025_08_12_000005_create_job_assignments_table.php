@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->foreignUuid('vehicle_id')->constrained()->cascadeOnDelete();
             $table->foreignUuid('driver_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     public function down(): void {

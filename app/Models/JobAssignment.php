@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class JobAssignment extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -22,7 +23,7 @@ class JobAssignment extends Model
     protected static function boot()
     {
         parent::boot();
-        static::creating(fn ($model) => $model->id = (string) Str::uuid());
+        static::creating(fn($model) => $model->id = (string) Str::uuid());
     }
 
     public function job()
@@ -40,4 +41,3 @@ class JobAssignment extends Model
         return $this->belongsTo(User::class, 'driver_id');
     }
 }
-

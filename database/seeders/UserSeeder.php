@@ -16,14 +16,26 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            'id' => Str::uuid(),
-            'name' => 'John Doe',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('12345678'),
-            'telephone' => "1234509896",
-            'address' => '4 Dansoman Downtown Street',
-            'role_id' => 1,
-            'status' => 12
+            [
+                'id' => Str::uuid(),
+                'name' => 'John Doe',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('12345678'),
+                'telephone' => "1234509896",
+                'address' => '4 Dansoman Downtown Street',
+                'role_id' => 1,
+                'status' => 12
+            ],
+            [
+                'id' => Str::uuid(),
+                'name' => 'Super Admin',
+                'email' => 'superadmin@gmail.com',
+                'password' => Hash::make('12345678'),
+                'telephone' => "123450989690",
+                'address' => '4 Okponglo Down',
+                'role_id' => 5,
+                'status' => 12
+            ]
         ]);
     }
 }

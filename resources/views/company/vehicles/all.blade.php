@@ -52,7 +52,7 @@
                     <div class="card-body pt-0">
                         <div class="table-responsive">
 
-                            <table class="table" id="vehicle_table">
+                            <table class="table mb-0" id="">
                                 {{ $dataTable->table() }}
                             </table>
 
@@ -62,8 +62,6 @@
             </div>
         </div>
     </div>
-
-
 
     @push('scripts')
         <script>
@@ -153,7 +151,7 @@
                                         </span>
                                     </div>
 
-                                    <a href="/vehicles/add" class="btn btn-sm btn-primary rounded-pill"
+                                    <a href="{{ route('vehicles.add.bulk') }}" class="btn btn-sm btn-primary rounded-pill"
                                         name="bulk_insert">Bulk
                                         data upload</a>
 
@@ -454,18 +452,18 @@
     <div class="modal fade" id="deleteVehicle" tabindex="-1" aria-labelledby="addVehicleLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-primary">
+                <div class="modal-header bg-danger">
                     <h5 class="modal-title" id="deleteVehicle">Delete Vehicle</h5>
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('vehicles.delete') }}" method="post">
                     @csrf
                     <div class="modal-body">
-                        <div class="row">
+                        <div class="row"> 
                             <div class="col-md-12">
                                 <div>
                                     <input name="delete_id" id="delete_id" hidden>
-                                    <p class="lead mb-0">Are you sure you want to peform this action?</p>
+                                    <p class="mb-0">Are you sure you want to peform this action?</p>
                                 </div>
                             </div>
                         </div>

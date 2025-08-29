@@ -122,4 +122,9 @@ class VehicleController extends Controller
             return redirect()->route('vehicles.index')->with('danger', 'Deletion failed.');
         }
     }
+
+    public function showBulkAdd()
+    {
+        return view('company.vehicles.bulk_add');
+    }
 }

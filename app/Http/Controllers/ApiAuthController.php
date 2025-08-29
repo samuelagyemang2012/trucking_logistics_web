@@ -44,7 +44,7 @@ class ApiAuthController extends Controller
             'id_number' => $request->id_number,
             'address' => $request->address,
             'role_id' => 2,
-            'status' => 12
+            'status' => 13
         ]);
 
         //Send OTP to email
@@ -62,7 +62,6 @@ class ApiAuthController extends Controller
 
         return $this->success([
             'user_id' => $user->id,
-            'status' => $user->status,
             'token' => $user->createToken('api_token:' . $user->email)->plainTextToken
         ]);
     }
@@ -78,8 +77,7 @@ class ApiAuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         return $this->success([
-            'user_id' => $user->id,
-            'status' => $user->status,
+            // 'user_id' => $user->id,
             'token' => $user->createToken('api_token:' . $user->email)->plainTextToken
         ]);
     }
@@ -106,17 +104,14 @@ class ApiAuthController extends Controller
                 $user = User::where(['email' => $request->only(['email'])])->first();
 
                 if ($user) {
-                    $user->status = 11;
+                    $user->status = 12;
                     $user->save();
                 }
 
                 //delete otp
                 OTP::where('id', $otp->id)->delete();
 
-                return $this->success([
-                    'user_id' => $user->id,
-                    'status' => $user->status,
-                ], 'Account activated');
+                return $this->success('', 'Account activated');
                 // $diffHuman = Carbon::parse($timestamp)->diffForHumans();
             }
             return $this->error('', 'The OTP is invalid.', 401);
@@ -138,7 +133,7 @@ class ApiAuthController extends Controller
         $user = User::where(['email' => $request->email])->first();
 
         if ($user) {
-            if ($user->status == 11) {
+            if ($user->status == 12) {
                 return $this->error('', 'The account is already activated.', 401);
             }
 
@@ -153,7 +148,7 @@ class ApiAuthController extends Controller
                 Log::error('Failed to queue welcome email: ' . $e->getMessage()); // Remove leading backslash statrt mail queue: php artisan queue:work
             }
 
-            return $this->success('', 'New OTP has been generated');
+            return $this->success('', 'New OTP has been generated.');
         }
         return $this->error('', 'The account is does not exist.', 401);
     }
