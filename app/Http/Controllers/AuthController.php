@@ -30,11 +30,22 @@ class AuthController extends Controller
             'tin_number' => 'required|string|max:11|unique:companies',
             'telephone' => 'required|numeric|unique:users',
             'address' => 'required|string|max:300',
-            'company_certificate' => 'file|extensions:pdf|nullable',
+            'profile_picture' => 'image|mimes:jpg,jpeg,png|max:5120|nullable',
+            // 'company_certificate' => 'file|extensions:pdf|nullable',
             'password' => 'required|string|min:8|confirmed'
         ]);
 
         $this->validate($request, $rules);
+
+        // --------------------------
+        $image = $request->profile_picture;
+        if ($image) {
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs("company_logos/", $filename, 'public');
+        } else {
+            $filename = '';
+        }
+        // ---------------------------
 
         $user = User::create([
             'name' => $request->name,
@@ -42,6 +53,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
             'telephone' => $request->telephone,
             'address' => $request->address,
+            'profile_picture' => $filename,
             'role_id' => 3,
             'status' => 12
         ]);
@@ -163,5 +175,47 @@ class AuthController extends Controller
         return $status === Password::PasswordReset
             ? redirect()->route('show.login')->with('success', __($status))
             : back()->withErrors(['danger' => [__($status)]]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $validated = $request->validate([
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        $user = Auth::user();
+
+        $new_password = Hash::make($request->password);
+        $user->password = $new_password;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Password changed successfully.');
+    }
+
+    public function deleteAccount(Request $request)
+    {
+        $rules = ([
+            'delete_id' => 'required'
+        ]);
+
+        $this->validate($request, $rules);
+
+        $user = User::find($request->delete_id);
+
+        $company = Company::where('user_id', $user->id)->first();
+
+        if ($user) {
+            $user->status = 13;
+            $user->save();
+            $user->delete();
+
+            if ($company) {
+                $company->delete();
+            }
+
+            return redirect()->route('show.login')->with('danger', 'Account Deleted.');
+        } else {
+            return redirect()->route('show.login')->with('danger', 'Account Deleted.');
+        }
     }
 }

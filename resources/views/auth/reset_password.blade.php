@@ -81,7 +81,7 @@
                             </div><!--end card-header-->
                             <div class="card-body pt-0">
                                 <div>
-                                    <form action="{{ route('password.update') }}" method="post">
+                                    <form action="{{ route('password.reset') }}" method="post">
                                         @csrf
 
                                         <input type="hidden" name="token" value="{{ $token }}">

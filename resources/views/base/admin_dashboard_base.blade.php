@@ -211,29 +211,28 @@
         </footer>
 
         {{-- Delete Modal --}}
-        <div class="modal fade" id="deactivate" tabindex="-1" aria-labelledby="deactivate" aria-hidden="true">
+        <div class="modal fade" id="delete_id" tabindex="-1" aria-labelledby="delete_id" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-danger">
-                        <h5 class="modal-title" id="deactivate">Deactivate Your Account?</h5>
+                        <h5 class="modal-title" id="delete_id">Delete Your Account?</h5>
                         <button type="button" class="btn btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('admin.deactivate.account') }}" method="post">
+                    <form action="{{ route('admin.delete.account') }}" method="post">
                         @csrf
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div> 
-                                        <input name="deactivate_id" value="{{auth()->user()->id}}" hidden>
+                                        <input name="delete_id" value="{{auth()->user()->id}}" hidden>
                                         <p class="mb-0">
                                             Are you sure you want to delete your account?
                                         </p>
                                         <p></p>
                                         <p class="mb-0">
                                             This action is permanent and cannot be undone. You will lose
-                                            access to all your data, including your profile, vehicles, and company
-                                            information.
+                                            access to all your data and information.
                                         </p>
                                         <p></p>
                                         <p class="mb-0">
@@ -252,7 +251,7 @@
                                 </div>
 
                                 <div class="col-md-8">
-                                    <button type="submit" class="btn btn-sm btn-danger">Deactive account</button>
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete account</button>
                                 </div>
                             </div>
                         </div>

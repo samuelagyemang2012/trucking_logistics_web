@@ -3,11 +3,12 @@ Welcome to {{ config('app.name') }}!
 
 Hi {{ $user->name }},
 
-Your account has been created and is now pending approval from our administration team. We'll send you an email as soon as it's been approved, and you'll be able to log in and access all of our logistics tools and services.
+Your account is now active.
 
-In the meantime, feel free to explore our website and learn more about how {{ config('app.name') }} can streamline your shipping and transportation needs.
+Welcome to our logistics platform! You now have full access to our complete suite of tools and services. 
+You can start exploring available jobs, accepting new work, and managing your fleet directly from your dashboard.
 
-We look forward to helping you move your business forward.
+We’re excited to help you streamline your transportation operations.
 
 Best regards,  
 The {{ config('app.name') }} Team

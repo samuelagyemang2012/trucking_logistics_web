@@ -44,7 +44,7 @@
 
 
                             <div class="col-auto ms-auto">
-                                <button class="btn bg-primary text-white rounded-pill" data-bs-toggle="modal"
+                                <button class="btn bg-primary text-white" data-bs-toggle="modal"
                                     data-bs-target="#addVehicle"><i class="fas fa-plus me-1"></i> Add Vehicle</button>
                             </div>
                         </div>

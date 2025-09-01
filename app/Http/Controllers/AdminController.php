@@ -25,48 +25,79 @@ class AdminController extends Controller
         ]);
     }
 
-    public function showChangePassword()
-    {
-        return view('admin.change_password');
-    }
+    // public function showChangePassword()
+    // {
+    //     return view('admin.change_password');
+    // }
 
-    public function changePassword(Request $request)
-    {
-        // $validated = $request->validate([
-        //     'password' => 'required|min:8|confirmed'
-        // ]);
 
-        // $user = Auth::user();
 
-        // $new_password = Hash::make($request->password);
-        // $user->password = $new_password;
-        // $user->status = 11;
-
-        // $user->save();
-
-        // return redirect()->route('admin.dashboard');
-    }
-
-    public function deactivateCompany(Request $request)
+    public function deactivateCustomerCompany(Request $request)
     {
         $rules = ([
-            'user_id' => 'required'
+            'deactivate_id' => 'required'
         ]);
 
         $this->validate($request, $rules);
 
-        $user = User::find($request->user_id);
-        $company = Company::where('user_id', $user->id)->first();
+        $user = User::find($request->deactivate_id);
+
 
         if ($user) {
             $user->status = 13;
             $user->save();
-            $user->delete();
-            $company->delete();
 
-            return redirect()->route('admin.users.companies')->with('success', 'Account Deactivated.');
+            return redirect()->back()->with('success', 'Account deactivated.');
         } else {
             return redirect()->back();
         }
     }
+
+    public function activateCustomerCompany(Request $request)
+    {
+        $rules = ([
+            'activate_id' => 'required'
+        ]);
+
+        $this->validate($request, $rules);
+
+        $user = User::find($request->activate_id);
+
+
+        if ($user) {
+            $user->status = 12;
+            $user->save();
+
+            return redirect()->back()->with('success', 'Account activated.');
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    // public function deactivateAccount(Request $request)
+    // {
+    //     $rules = ([
+    //         'deactivate_id' => 'required'
+    //     ]);
+
+    //     $this->validate($request, $rules);
+
+    //     $user = User::find($request->deactivate_id);
+
+    //     $company = Company::where('user_id', $user->id)->first();
+
+    //     if ($user) {
+    //         $user->status = 13;
+    //         $user->save();
+    //         $user->delete();
+
+    //         if ($company) {
+    //             $company->delete();
+    //         }
+
+    //         return redirect()->route('show.login')->with('danger', 'Account Deactivated.');
+    //     } else {
+    //         return redirect()->route('show.login')->with('danger', 'Account Deactivated.');
+    //     }
+    // }
 }

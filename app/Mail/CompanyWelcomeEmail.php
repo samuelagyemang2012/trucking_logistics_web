@@ -21,7 +21,7 @@ class CompanyWelcomeEmail extends Mailable
      */
     public function __construct(User $user)
     {
-        $this->user = $user; 
+        $this->user = $user;
     }
 
     /**
@@ -31,7 +31,7 @@ class CompanyWelcomeEmail extends Mailable
     {
         return new Envelope(
             from: config('mail.from.address'),
-            subject: 'Welcome to ' . config('app.name') . ' - Account Awaiting Activation',
+            subject: 'Welcome to ' . config('app.name'),
         );
     }
 
@@ -41,7 +41,7 @@ class CompanyWelcomeEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown:'emails.company.welcome',
+            markdown: 'emails.company.welcome',
             with: ['user' => $this->user]
         );
     }

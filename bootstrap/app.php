@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckAdmin;
+use App\Http\Middleware\CheckAPI;
 use App\Http\Middleware\CheckCompany;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,12 +15,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+
         $middleware->alias([
             'check_company' => CheckCompany::class,
-            'check_admin' => CheckAdmin::class
+            'check_admin' => CheckAdmin::class,
+            'check_api' => CheckAPI::class,
+
         ]);
     })
+
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();

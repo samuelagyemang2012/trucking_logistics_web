@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Laravel\Sanctum\PersonalAccessToken;
 use Laravel\Socialite\Facades\Socialite;
 
 class ApiAuthController extends Controller
@@ -76,10 +77,14 @@ class ApiAuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
+        if ($user->status != 12) {
+            return $this->error('', 'This account is disabled.', 401);
+        }
+
         return $this->success([
             // 'user_id' => $user->id,
             'token' => $user->createToken('api_token:' . $user->email)->plainTextToken
-        ]);
+        ], 'Login successful.');
     }
 
     public function activateAccount(ActivateAccountRequest $request)
@@ -160,8 +165,29 @@ class ApiAuthController extends Controller
         return $this->success('', 'Logout successful. Your token has been destroyed.');
     }
 
-    public function test()
+    public function test(Request $request)
     {
-        return config('app.name');
+        // $user = auth('sanctum')->user();
+        // $id = $request->id;
+        // $user = User::where(['id' => $user->id])->first();
+        // // // $user->currentAccessToken()->delete();
+        // $token = $request->bearerToken();
+        // $user = User::where('api_token', $token)->first();
+        // $user =  auth('sanctum')->user();
+
+        return response()->json(['data' => "get"]);
+    }
+
+    public function ptest(Request $request)
+    {
+        // $user = auth('sanctum')->user();
+        // $id = $request->id;
+        // $user = User::where(['id' => $user->id])->first();
+        // // // $user->currentAccessToken()->delete();
+        // $token = $request->bearerToken();
+        // $user = User::where('api_token', $token)->first();
+        // $user =  auth('sanctum')->user();
+
+        return response()->json(['data' => "post"]);
     }
 }

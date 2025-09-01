@@ -18,7 +18,7 @@
                                     <div class="alert">
                                         <ul class="list-group">
                                             @foreach ($errors->all() as $error)
-                                                <li class="list-group-item list-group-item-danger">{{$error}}</li>
+                                                <li class="list-group-item list-group-item-danger">{{ $error }}</li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -29,6 +29,7 @@
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
+                                        <img src="{{ asset('images/logo.png') }}" alt="">
                                         <h3 class="">Register Your Company Here</h3>
                                         {{-- <h5 class="text-secondary">Create an account here</h5> --}}
                                     </div><!--end col-->
@@ -37,7 +38,8 @@
                             </div><!--end card-header-->
                             <div class="card-body pt-0">
                                 <div>
-                                    <form action="{{ route('company.register') }}" method="post">
+                                    <form action="{{ route('company.register') }}" method="post"
+                                        enctype="multipart/form-data">
                                         {{ csrf_field() }}
 
                                         <div class="row">
@@ -121,35 +123,36 @@
                                             </div>
                                             {{-- end right --}}
 
-                                            {{-- certificate --}}
-                                            <div class="col-lg-12">
+                                            {{-- Profile --}}
+                                            <div class="col-lg-8">
 
                                                 <div class="mb-3 d-grid">
-                                                    <label class="form-label">Upload your Certificate of Registration
+                                                    <label class="form-label">Upload your Company Logo
                                                         here</label>
                                                     <div
                                                         class="preview-box d-block justify-content-center rounded  border-dashed border-theme-color overflow-hidden p-3">
                                                     </div>
-                                                    <input type="file" id="input-file" name="company_certificate"
-                                                        accept="image/*,.pdf" onchange={handleChange()} hidden />
-                                                    <label class="btn-upload btn btn-primary mt-3" for="input-file">Upload
+                                                    <input type="file" id="input-file" name="profile_picture"
+                                                        accept="image/jpeg,image/png" onchange={handleChange()} hidden />
+                                                    <label class="btn-upload btn btn-outline-primary mt-3"
+                                                        for="input-file">Upload
                                                         File</label>
                                                 </div>
-                                                <hr>
-                                                {{-- end certificate --}}
+                                            </div>
+                                            <hr>
+                                            {{-- end  --}}
 
-                                                {{-- register btn --}}
-                                                <div class="col-lg-12">
-                                                    <div class="row">
-                                                        <div class="col-sm-4 d-grid">
-                                                            <button type="submit"
-                                                                class="btn btn-lg btn-warning rounded-pill">Register</button>
-                                                        </div>
+                                            {{-- register btn --}}
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-sm-4 d-grid">
+                                                        <button type="submit"
+                                                            class="btn btn-lg btn-dark">Register</button>
                                                     </div>
                                                 </div>
-                                                {{-- end register btn --}}
                                             </div>
-
+                                            {{-- end register btn --}}
+                                        </div>
                                     </form>
                                 </div>
 
@@ -166,8 +169,7 @@
                                                 <p class="text-secondary">Have an account already?</p>
                                             </div>
                                             <div class="col-sm-4">
-                                                <a class="btn btn-primary  rounded-pill"
-                                                    href="{{ route('show.login') }}">Login
+                                                <a class="btn btn-primary" href="{{ route('show.login') }}">Login
                                                     Here</a>
 
                                             </div>

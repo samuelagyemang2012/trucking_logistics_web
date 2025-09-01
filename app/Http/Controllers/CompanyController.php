@@ -38,27 +38,6 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function deactivateAccount(Request $request)
-    {
-        $rules = ([
-            'deactivate_id' => 'required'
-        ]);
 
-        $this->validate($request, $rules);
-
-        $user = User::find($request->deactivate);
-        $company = Company::where('user_id', $user->id)->first();
-
-        if ($user) {
-            $user->status = 13;
-            $user->save();
-            $user->delete();
-            $company->delete();
-
-            return redirect()->route('show.login')->with('danger', 'Account Deactivated.');
-        } else {
-            return redirect()->back();
-        }
-    }
     //upload file
 }

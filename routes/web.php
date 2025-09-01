@@ -4,10 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DriverController;
-use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,10 +26,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('password.email');
 
-Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
-Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
-
-
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('show.password.reset');
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.reset');
 // ---------end Auth----------------
 
 // Company routes
@@ -39,7 +35,10 @@ Route::group(['prefix' => 'company', 'middleware' => ['auth', 'check_company']],
     Route::get('/dashboard', [CompanyController::class, 'dashboard'])->name('company.dashboard');
     // Profile
     Route::get('/profile', [CompanyController::class, 'showProfile'])->name('company.profile');
-    Route::post('/deactivate-account', [CompanyController::class, 'deactivateAccount'])->name('company.deactivate.account');
+    Route::post('/profile-update', [UserController::class, 'update'])->name('company.profile.update');
+    Route::post('/change-password', [AuthController::class, 'changePassword'])->name('password.change');
+    Route::post('/delete-account', [AuthController::class, 'deleteAccount'])->name('company.delete.account');
+
     // Vehicles
     Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
     Route::post('/vehicles/add', [VehicleController::class, 'add'])->name('vehicles.add');
@@ -47,6 +46,7 @@ Route::group(['prefix' => 'company', 'middleware' => ['auth', 'check_company']],
     Route::get('/vehicles/{id}', [VehicleController::class, 'get'])->name('vehicles.get');
     Route::post('/vehicles/update', [VehicleController::class, 'update'])->name('vehicles.update');
     Route::post('/vehicles/delete', [VehicleController::class, 'delete'])->name('vehicles.delete');
+
     // Drivers
     Route::get('/drivers', [DriverController::class, 'index'])->name('drivers.index');
     Route::post('/drivers/add', [DriverController::class, 'add'])->name('drivers.add');
@@ -58,12 +58,16 @@ Route::group(['prefix' => 'company', 'middleware' => ['auth', 'check_company']],
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin']], function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/deactivate-account', [AdminController::class, 'deactivateAccount'])->name('admin.deactivate.account');
-    Route::get('/change-password', [AdminController::class, 'showChangePassword'])->name('admin.show.password.change');
-    Route::post('/change-password', [AdminController::class, 'changePassword'])->name('admin.password.change');
+    // Route::get('/change-password', [AdminController::class, 'showChangePassword'])->name('admin.show.password.change');
+    // Route::post('/change-password', [AdminController::class, 'changePassword'])->name('admin.password.change');
     Route::get('/users/companies', [UserController::class, 'getCompanies'])->name('admin.users.companies');
     Route::get('/users/customers', [UserController::class, 'getCustomers'])->name('admin.users.customers');
+    Route::get('/users/customers/{id}', [UserController::class, 'getCustomer'])->name('admin.users.customer');
     Route::get('/users/admins', [UserController::class, 'getAdmins'])->name('admin.users.admins');
-    Route::post('/deactivate-company', [AdminController::class, 'deactivateCompany'])->name('admin.deactivate.company');
+    Route::post('/deactivate', [AdminController::class, 'deactivateUserCompany'])->name('admin.deactivate.account');
+    Route::post('/deactivate-user-company', [AdminController::class, 'deactivateCustomerCompany'])->name('admin.deactivate.customer.company');
+    Route::post('/activate-user-company', [AdminController::class, 'activateCustomerCompany'])->name('admin.activate.customer.company');
+    Route::post('/delete-account', [AuthController::class, 'deleteAccount'])->name('admin.delete.account');
 });
 
 // Route::get('/profile', function () {
