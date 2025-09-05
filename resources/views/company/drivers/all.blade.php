@@ -12,38 +12,53 @@
             </div><!--end col-->
         </div><!--end row-->
 
-        <div class="row">
-            <div class="col-10">
+        <div class="row justify-content-center">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-auto">
-                                {{-- <h4 class="card-title">Editable</h4> --}}
-                            </div>
-                            <div class="col-auto">
 
+                                {{-- success --}}
+                                @if (session('success'))
+                                    <div class="alert alert-success alert-dismissible fade show " role="alert">
+                                        <span>{{ session('success') }}</span>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endif
+
+                                {{-- error --}}
+                                @if ($errors->any())
+                                    <div class="alert">
+                                        <ul class="list-group">
+                                            @foreach ($errors->all() as $error)
+                                                <li class="list-group-item list-group-item-danger">{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             </div>
+
+
                             <div class="col-auto ms-auto">
-                                <button class="btn bg-primary text-white rounded-pill" data-bs-toggle="modal"
+                                <button class="btn bg-dark text-white" data-bs-toggle="modal"
                                     data-bs-target="#addDriver"><i class="fas fa-plus me-1"></i> Add Driver</button>
-                                {{-- <div class="bg-primary-subtle p-2 border-dashed border-primary rounded">
-                                    <span class="text-primary fw-semibold">Note :</span><span
-                                        class="text-primary fw-normal"> if you want to data edit do double click on a table
-                                        row.</span>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
                     <div class="card-body pt-0">
                         <div class="table-responsive">
-                            <table class="table mb-0">
+
+                            <table class="table mb-0" id="">
                                 {{ $dataTable->table() }}
                             </table>
+
                         </div>
                     </div>
                 </div>
-            </div> <!-- end col -->
-        </div> <!-- end row -->
+            </div>
+        </div>
     </div>
 
     @push('scripts')
@@ -113,7 +128,7 @@
     <div class="modal fade" id="addDriver" tabindex="-1" aria-labelledby="addDriverLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-primary">
+                <div class="modal-header bg-dark">
                     <h5 class="modal-title" id="addVehicle">Add Driver</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -129,7 +144,7 @@
                                         <span class="" id="ragisterDate">Click here to upload data in bulk
                                         </span>
                                     </div>
-                                    <a href="/drivers/add" class="btn btn-sm btn-primary rounded-pill"
+                                    <a href="/drivers/add" class="btn btn-sm btn-dark"
                                         name="bulk_insert">Bulk
                                         data upload</a>
                                 </div>
@@ -225,7 +240,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Add Driver</button>
+                        <button type="submit" class="btn btn-dark w-100 rounded-pill">Add Driver</button>
                     </div>
                 </form>
             </div>
@@ -236,7 +251,7 @@
     <div class="modal fade" id="editDriver" tabindex="-1" aria-labelledby="editDriverLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-primary">
+                <div class="modal-header bg-dark">
                     <h5 class="modal-title" id="addVehicle">Edit Driver</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -252,7 +267,7 @@
                                         <span class="" id="ragisterDate">Click here to upload data in bulk
                                         </span>
                                     </div>
-                                    <a href="/drivers/add" class="btn btn-sm btn-primary rounded-pill"
+                                    <a href="/drivers/add" class="btn btn-sm btn-dark"
                                         name="bulk_insert">Bulk
                                         data upload</a>
                                 </div>
@@ -348,7 +363,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Add Driver</button>
+                        <button type="submit" class="btn btn-dark w-100 rounded-pill">Add Driver</button>
                     </div>
                 </form>
 

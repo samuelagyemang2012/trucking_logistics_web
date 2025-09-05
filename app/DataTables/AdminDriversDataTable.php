@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
+use App\Models\AdminDriver;
 use App\Models\Company;
-use App\Models\Driver;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -17,62 +17,59 @@ use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use Illuminate\Support\Str;
 
-class DriversDataTable extends DataTable
+class AdminDriversDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder<Driver> $query Results from query() method.
+     * @param QueryBuilder<AdminDriver> $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->editColumn('name', function ($driver) {
-                return Str::title($driver->name);
-            })
-            ->editColumn('status', function ($driver) {
-                if ($driver->status == 'Active') {
-                    return '<span class="badge bg-success-subtle text-success">' . $driver->status . '</span>';
-                } else {
-                    return '<span class="badge bg-danger-subtle text-danger">' . $driver->status . '</span>';
-                }
-            })
             ->editColumn('national_id', function ($driver) {
                 return Str::title(Str::replace("_", " ", $driver->national_id));
             })
             ->editColumn('created_at', function ($driver) {
                 return Carbon::parse($driver->created_at)->format('Y-m-d');
             })
-            ->addColumn('action',  function ($driver) {
+            ->editColumn('id_number', function ($driver) {
+                return Str::upper($driver->id_number);
+            })
+            ->editColumn('status', function ($user) {
+                if ($user->status == 'Active') {
+                    return '<span class="badge bg-success-subtle text-success">' . $user->status . '</span>';
+                } else {
+                    return '<span class="badge bg-danger-subtle text-danger">' . $user->status . '</span>';
+                }
+            })
+            ->addColumn('action',  function ($user) {
                 $btn = "<div class='btn-group' role='group'>";
-                $btn .= "<button class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#editDriver' onclick='get_driver(\"{$driver->id}\")'><i class='las la-pen fs-18'></i></button>";
-                $btn .= "<button class='btn btn-sm btn-outline-danger' data-bs-toggle='modal' data-bs-target='#deleteDriver' onclick='delete_driver(\"{$driver->id}\")'><i class='las la-trash fs-18'></i></button>";
+                $btn .= "<a class='btn btn-sm btn-outline-dark' href='/jk'><i class='las la-box fs-18'></i></a>";
                 $btn .= "</div>";
 
                 return $btn;
             })
             ->setRowId('id')
-            ->rawColumns(['status', 'action']);
+            ->rawColumns(['status','action']);
     }
 
     /**
      * Get the query source of dataTable.
      *
-     * @return QueryBuilder<Driver>
+     * @return QueryBuilder<AdminDriver>
      */
-    public function query(Driver $model): QueryBuilder
+    public function query(User $model): QueryBuilder
     {
-
-        $user = Auth::user();
-        $company = Company::where('user_id', $user->id)->first(); 
+        $company = Company::where('user_id', $this->id)->first();
 
         return $model->newQuery()
             ->select('users.id', 'users.name', 'users.email', 'users.telephone', 'users.national_id', 'users.id_number', 'statuses.name as status', 'users.created_at')
-            ->join('users', 'drivers.user_id', '=', 'users.id')
-            ->join('companies', 'drivers.company_id', '=', 'companies.id')
             ->join('statuses', 'users.status', '=', 'statuses.id')
-            ->where('drivers.company_id', $company->id)
-            ->where('users.role_id', '=', 4);
+            ->join('drivers', 'drivers.user_id', '=', 'users.id')
+            ->where('users.role_id', '=', 4)
+            ->where('company_id','=',$company->id);
+            
     }
 
     /**
@@ -81,7 +78,7 @@ class DriversDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('drivers_table')
+            ->setTableId('admindrivers-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
@@ -105,6 +102,14 @@ class DriversDataTable extends DataTable
                     ],
                 ]
             ]);
+        // ->buttons([
+        //     Button::make('excel'),
+        //     Button::make('csv'),
+        //     Button::make('pdf'),
+        //     Button::make('print'),
+        //     Button::make('reset'),
+        //     Button::make('reload')
+        // ]);
     }
 
     /**
@@ -115,11 +120,11 @@ class DriversDataTable extends DataTable
         return [
             Column::make('name'),
             Column::make('email'),
-            Column::make('telephone')->title('Mobile No'),
-            Column::make('national_id')->title('ID'),
+            Column::make('telephone'),
+            Column::make('national_id')->title('National ID'),
             Column::make('id_number')->title('ID Number'),
-            Column::make('created_at')->title('Joined On'),
-            Column::make('status'),
+            Column::make('status')->title('Status'),
+            Column::make('created_at')->title('Joined At'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -133,6 +138,6 @@ class DriversDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Drivers_' . date('YmdHis');
+        return 'AdminDrivers_' . date('YmdHis');
     }
 }

@@ -39,7 +39,7 @@ class DriverController extends Controller
             'email' => $request->email,
             'telephone' => $request->telephone,
             'password' => Hash::make(Str::random(10)),
-            'national_id' => $request->id_type,
+            'national_id' => $request->national_id,
             'id_number' => $request->id_number,
             'role_id' => 4,
             'status' => 12

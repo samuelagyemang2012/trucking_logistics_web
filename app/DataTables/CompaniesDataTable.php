@@ -42,10 +42,13 @@ class CompaniesDataTable extends DataTable
             ->editColumn('created_at', function ($company) {
                 return Carbon::parse($company->created_at)->format('Y-m-d');
             })
-            ->addColumn('action',  function ($company) {
+            ->addColumn('action',  function ($user) {
                 $btn = "<div class='btn-group' role='group'>";
-                $btn .= "<button class='btn btn-sm btn-outline-success' data-bs-toggle='modal' data-bs-target='# onclick='get_driver(\"{$company->id}\")'><i class='las la-eye fs-18'></i></button>";
-                $btn .= "<button class='btn btn-sm btn-outline-danger' data-bs-toggle='modal' data-bs-target='#deleteCompany' onclick='delete_company(\"{$company->id}\")'><i class='las la-trash fs-18'></i></button>";
+                $btn .= "<a class='btn btn-sm btn-outline-dark' href='/admin/users/companies/" . $user->id . "'><i class='las la-eye fs-18'></i></a>";
+                $btn .= "<a class='btn btn-sm btn-outline-dark' href='/admin/users/companies/vehicles/" . $user->id . "'><i class='las la-truck fs-18'></i></a>";
+                $btn .= "<a class='btn btn-sm btn-outline-dark' href='/admin/users/companies/drivers/" . $user->id . "'><i class='las la-user fs-18'></i></a>";
+                $btn .= "<a class='btn btn-sm btn-outline-dark' href='/admin/users/companies/jobs/" . $user->id . "'><i class='las la-box fs-18'></i></a>";
+                // $btn .= "<button class='btn btn-sm btn-outline-danger' data-bs-toggle='modal' data-bs-target='#deleteCompany' onclick='delete_company(\"{$company->id}\")'><i class='las la-trash fs-18'></i></button>";
                 $btn .= "</div>";
 
                 return $btn;

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\AdminVehiclesDataTable;
 use App\DataTables\VehiclesDataTable;
 use App\Models\Company;
 use App\Models\Status;
+use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
@@ -122,6 +124,13 @@ class VehicleController extends Controller
             return redirect()->route('vehicles.index')->with('danger', 'Deletion failed.');
         }
     }
+
+    public function getCompanyVehicles(AdminVehiclesDataTable $dataTable, $id)
+    {   
+        $user = User::where(['id' => $id])->first();
+      
+        return $dataTable->with(['id' => $id])->render('admin.users.companies.get_company_vehicles',['name'=>$user->name]);
+    } 
 
     public function showBulkAdd()
     {

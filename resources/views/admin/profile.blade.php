@@ -1,4 +1,4 @@
-@extends('base.company_dashboard_base')
+@extends('base.admin_dashboard_base')
 
 @section('content')
 
@@ -15,7 +15,7 @@
         </div><!--end row-->
 
 
-        {{-- image --}}
+        {{-- Alerts --}}
         <div class="row justify-content-center">
             <div class="col-md-8">
 
@@ -41,31 +41,29 @@
                         </ul>
                     </div>
                 @endif
-                {{-- --------- --}}
 
-                <div class="card">
-                    <div class="card-body p-4  rounded text-center">
+            </div>
+        </div>
 
-                    </div><!--end card-body-->
-                    <div class="position-relative mb-4">
-                        <div class="shape overflow-hidden">
-                            {{-- <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
-                            </svg> --}}
-                        </div>
-                    </div>
-                    <div class="card-body mt-n6">
-                        <div class="row align-items-center">
-                            <div class="col ">
-                                <div class="d-flex align-items-center">
+        {{-- profile --}}
+        <div class="row justify-content-center">
+            <div class="col-md-8 ">
+
+                <div class="">
+
+                    <div class="card">
+                        <div class="card-header"></div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-sm-2">
                                     <div class="position-relative">
-                                        {{-- Profile pic --}}
-
-                                        <img src="{{ url('storage/company_logos/' . $user->profile_picture) }}"
-                                            class="rounded-circle img-fluid">
-
+                                        <span
+                                            class="thumb-xxl justify-content-center d-flex align-items-center bg-primary-subtle text-primary rounded-circle me-2">{{ $initials }}
+                                        </span>
                                     </div>
-                                    <div class=" text-truncate ms-3 ">
+                                </div>
+                                <div class="col-sm-10 align-items-center pt-2">
+                                    <div class="text-truncate ms-3">
                                         <h5 class="m-0 fs-3 fw-bold">{{ $user->name }}</h5>
                                         <p class="text-muted mb-0">{{ $user->address }}</p>
                                     </div>
@@ -74,7 +72,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -95,8 +92,7 @@
                         </div>
                         <div class="card-body pt-0">
 
-                            <form action="{{ route('company.profile.update') }}" method="post"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('admin.profile.update') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group mb-3 row">
                                     {{-- <div>
@@ -119,7 +115,7 @@
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="la la-envelope"></i></span>
                                             <input type="email" class="form-control" value="{{ $user->email }}"
-                                                placeholder="Email" name="email">
+                                                placeholder="Email" name="email" disabled style="color: #BBC6DA">
                                         </div>
                                     </div>
                                 </div>
@@ -137,17 +133,17 @@
                                 </div>
 
                                 {{-- TIN --}}
-                                <div class="form-group mb-3 row">
+                                {{-- <div class="form-group mb-3 row">
                                     <label class="col-xl-3 col-lg-3  mb-lg-0 align-self-center form-label">TIN
                                         Number</label>
                                     <div class="col-lg-9 col-xl-8">
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="las la-address-card"></i></span>
-                                            <input type="text" class="form-control" value="{{ $company->tin_number }}"
+                                            <input type="text" class="form-control" value=""
                                                 placeholder="TIN" name="tin_number">
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 {{-- Address --}}
                                 <div class="form-group mb-3 row">
@@ -162,7 +158,7 @@
                                 </div>
 
                                 {{-- Logo --}}
-                                <div class="form-group mb-3 row">
+                                {{-- <div class="form-group mb-3 row">
                                     <label class="form-label">Upload your Company Logo
                                         here</label>
                                     <div
@@ -173,13 +169,13 @@
                                             <input type="file" id="input-file" name="profile_picture"
                                                 accept="image/jpeg,image/png" onchange={handleChange()} hidden />
                                             <div>
-                                                <label class="btn-upload btn btn-outline-dark btn-sm mt-3 btn-outline"
+                                                <label class="btn-upload btn btn-outline-primary btn-sm mt-3 btn-outline"
                                                     for="input-file">Upload
                                                     File</label>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <hr>
                                 <div class="form-group row">
                                     <div class="col-lg-9 col-xl-8 ">
@@ -203,7 +199,7 @@
                     </div><!--end card-header-->
                     <div class="card-body pt-0">
                         <div>
-                            <form action="{{ route('password.change') }}" method="post">
+                            <form action="{{ route('admin.password.change') }}" method="post">
                                 @csrf
                                 <div class="form-group mb-3 row">
                                     <input type="text" name="session_name" value="password.change" hidden>

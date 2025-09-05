@@ -44,7 +44,7 @@
 
 
                             <div class="col-auto ms-auto">
-                                <button class="btn bg-primary text-white" data-bs-toggle="modal"
+                                <button class="btn bg-dark text-white" data-bs-toggle="modal"
                                     data-bs-target="#addVehicle"><i class="fas fa-plus me-1"></i> Add Vehicle</button>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
     <div class="modal fade" id="addVehicle" tabindex="-1" aria-labelledby="addVehicleLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-primary">
+                <div class="modal-header bg-dark">
                     <h5 class="modal-title" id="addVehicle">Add Vehicle</h5>
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -151,7 +151,7 @@
                                         </span>
                                     </div>
 
-                                    <a href="{{ route('vehicles.add.bulk') }}" class="btn btn-sm btn-primary rounded-pill"
+                                    <a href="{{ route('vehicles.add.bulk') }}" class="btn btn-sm btn-dark"
                                         name="bulk_insert">Bulk
                                         data upload</a>
 
@@ -282,7 +282,7 @@
 
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Add Vehicle</button>
+                        <button type="submit" class="btn btn-dark w-100 rounded-pill">Add Vehicle</button>
                     </div>
                 </form>
 
@@ -295,7 +295,7 @@
     <div class="modal fade" id="editVehicle" tabindex="-1" aria-labelledby="addVehicleLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-primary">
+                <div class="modal-header bg-dark">
                     <h5 class="modal-title" id="addVehicle">Edit Vehicle</h5>
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -311,7 +311,7 @@
                                         </span>
                                     </div>
 
-                                    <a href="/vehicles/add" class="btn btn-sm btn-primary rounded-pill"
+                                    <a href="/vehicles/add" class="btn btn-sm btn-dark"
                                         name="bulk_insert">Bulk
                                         data upload</a>
                                 </div>
@@ -439,7 +439,7 @@
 
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Update Vehicle</button>
+                        <button type="submit" class="btn btn-dark w-100 rounded-pill">Update Vehicle</button>
                     </div>
                 </form>
 

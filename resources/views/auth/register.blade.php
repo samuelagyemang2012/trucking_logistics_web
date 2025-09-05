@@ -14,7 +14,8 @@
                         <div class="card">
                             {{-- errors --}}
                             <div>
-                                @if ($errors->any())
+                                {{-- @if ($errors->any())
+                                    {{ $errors }}
                                     <div class="alert">
                                         <ul class="list-group">
                                             @foreach ($errors->all() as $error)
@@ -22,7 +23,7 @@
                                             @endforeach
                                         </ul>
                                     </div>
-                                @endif
+                                @endif --}}
                             </div>
                             {{-- end errors --}}
 
@@ -47,12 +48,35 @@
                                             <div class="col-lg-12">
 
                                                 <div class="mb-3">
-                                                    <label for="name" class="form-label"><span
-                                                            class="text-danger">*</span> Company Name</label>
-                                                    <input name='name' type="text" class="form-control" id="name"
+                                                    <div>
+                                                        <label for="name" class="form-label"><span
+                                                                class="text-danger">*</span> Company Name</label>
+
+
+                                                        <div>
+                                                            <input name='name' type="text"
+                                                                class="form-control @error('name') is-invalid @enderror"
+                                                                id="name" placeholder="Enter your comany name"
+                                                                value="{{ old('name') }}" required>
+
+                                                            @error('name')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    {{-- <input name='name' type="text" class="form-control" id="name"
                                                         placeholder="Enter your comany name" value="{{ old('name') }}">
+
+                                                    <div class="invalid-feedback">Sorry, that username's taken. Try another?</div> --}}
+
                                                 </div>
                                             </div>
+
                                             {{-- end company end --}}
 
                                             {{-- left --}}
@@ -62,8 +86,16 @@
                                                 <div class="mb-3 ">
                                                     <label for="email" class="form-label"> <span
                                                             class="text-danger">*</span> Email</label>
-                                                    <input name="email" type="email" class="form-control" id="email"
-                                                        placeholder="E.g. example@gmail.com" value="{{ old('email') }}">
+
+                                                    <input name="email" type="email"
+                                                        class="form-control @error('email') is-invalid @enderror"
+                                                        id="email" placeholder="E.g. example@gmail.com"
+                                                        value="{{ old('email') }}" required>
+                                                    @error('email')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 {{-- end email --}}
 
@@ -73,9 +105,15 @@
                                                     <label for="tin_number" class="form-label"><span
                                                             class="text-danger">*</span> Taxpayer Identification
                                                         Number (TIN)</label>
-                                                    <input name="tin_number" type="text" class="form-control"
+                                                    <input name="tin_number" type="text"
+                                                        class="form-control @error('tin_number') is-invalid @enderror"
                                                         id="tin_number" value="{{ old('tin_number') }}"
-                                                        placeholder="E.g. 000 – 123 – 456 – 001">
+                                                        placeholder="E.g. 000 – 123 – 456 – 001" required>
+                                                    @error('tin_number')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                     {{-- <input type="text" name=""> --}}
                                                 </div>
                                                 {{-- end TIN --}}
@@ -84,8 +122,15 @@
                                                 <div class="mb-3 ">
                                                     <label for="password" class="form-label"><span
                                                             class="text-danger">*</span> Password</label>
-                                                    <input type="password" name="password" class="form-control"
-                                                        id="password">
+                                                    <input type="password" name="password"
+                                                        class="form-control @error('password') is-invalid @enderror"
+                                                        id="password" required>
+                                                    @error('password')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+
                                                 </div>
                                             </div>
                                             {{-- end left --}}
@@ -97,17 +142,30 @@
                                                 <div class="mb-3 ">
                                                     <label for="tel" class="form-label"><span
                                                             class="text-danger">*</span> Telephone</label>
-                                                    <input type="tel" class="form-control" name="telephone"
-                                                        id="tel" placeholder="E.g. 1502681453"
-                                                        value="{{ old('telephone') }}">
+                                                    <input type="tel"
+                                                        class="form-control @error('telephone') is-invalid @enderror"
+                                                        name="telephone" id="tel" placeholder="E.g. 1502681453"
+                                                        value="{{ old('telephone') }}" required>
+                                                    @error('telephone')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
 
                                                 {{-- Address --}}
                                                 <div class="mb-3 ">
                                                     <label for="address" class="form-label"><span
                                                             class="text-danger">*</span> Address</label>
-                                                    <input type="text" name="address" class="form-control" id="address"
-                                                        placeholder="E.g. 1 ABC Street" value="{{ old('address') }}">
+                                                    <input type="text" name="address"
+                                                        class="form-control @error('address') is-invalid @enderror"
+                                                        id="address" placeholder="E.g. 1 ABC Street"
+                                                        value="{{ old('address') }}" required>
+                                                    @error('address')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
 
                                                 </div>
 
@@ -117,7 +175,7 @@
                                                             class="text-danger">*</span> Confirm
                                                         Password</label>
                                                     <input type="password" name="password_confirmation" class="form-control"
-                                                        id="password_confirmation">
+                                                        id="password_confirmation" required>
 
                                                 </div>
                                             </div>
@@ -134,7 +192,7 @@
                                                     </div>
                                                     <input type="file" id="input-file" name="profile_picture"
                                                         accept="image/jpeg,image/png" onchange={handleChange()} hidden />
-                                                    <label class="btn-upload btn btn-outline-primary mt-3"
+                                                    <label class="btn-upload btn btn-outline-dark mt-3"
                                                         for="input-file">Upload
                                                         File</label>
                                                 </div>
@@ -169,7 +227,7 @@
                                                 <p class="text-secondary">Have an account already?</p>
                                             </div>
                                             <div class="col-sm-4">
-                                                <a class="btn btn-primary" href="{{ route('show.login') }}">Login
+                                                <a class="btn btn-dark btn-sm" href="{{ route('show.login') }}">Login
                                                     Here</a>
 
                                             </div>

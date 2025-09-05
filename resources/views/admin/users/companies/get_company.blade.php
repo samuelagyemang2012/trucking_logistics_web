@@ -15,8 +15,8 @@
         </div><!--end row-->
 
 
-        {{-- Alerts --}}
-        <div class="row justify-content-center">
+        {{-- image --}}
+        <div class="row ">
             <div class="col-md-8">
 
                 {{-- Alert --}}
@@ -62,10 +62,16 @@
                                 <div class="d-flex align-items-center">
 
                                     <div class="position-relative">
-                                        <span
-                                            class="thumb-xxl justify-content-center d-flex align-items-center bg-success-subtle text-success rounded-circle me-2">{{$initials}}
-                                        </span>
+                                        @if ($user->profile_picture)
+                                            <img src="{{ asset('storage/company_logos/1756488865_ame-bank.png') }}"
+                                                alt="user" class="thumb-xl rounded-circle">
+                                        @else
+                                            <span
+                                                class="thumb-xxl justify-content-center d-flex align-items-center bg-success-subtle text-success rounded-circle me-2">{{ $logo }}
+                                            </span>
+                                        @endif
                                     </div>
+
                                     <div class=" text-truncate ms-3 ">
                                         <h5 class="m-0 fs-3 fw-bold">{{ $user->name }}</h5>
                                         {{-- <p class="text-muted mb-0">{{ $user->address }}</p> --}}
@@ -80,7 +86,7 @@
         </div>
 
         {{-- Edit --}}
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-md-8 ">
 
                 <div class="">
@@ -121,7 +127,13 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-center bg-white">
                                     <div>
                                         <i style="font-size: 18px"
-                                            class="la la-id-card text-muted font-16 me-2"></i>{{ Str::title(Str::replace('_', ' ', $user->national_id)) }}
+                                            class="la la-map-marker text-muted font-16 me-2"></i>{{ $user->address }}
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-white">
+                                    <div>
+                                        <i style="font-size: 18px"
+                                            class="la la-id-card text-muted font-16 me-2"></i>{{ Str::title(Str::replace('_', ' ', $company->tin_number)) }}
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center bg-white">
                                     <div>
@@ -129,14 +141,10 @@
                                             class="la la-id-card text-muted font-16 me-2"></i>{{ Str::upper($user->id_number) }}
                                     </div>
                                 </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center bg-white">
-                                    <div>
-                                        <i style="font-size: 18px"
-                                            class="la la-map-marker text-muted font-16 me-2"></i>{{ $user->address }}
-                                    </div>
-                                </li>
                             </ul>
+
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -144,7 +152,7 @@
 
         {{-- Deactivate --}}
         @if ($user->status == 12)
-            <div class="row justify-content-center">
+            <div class="row">
                 <div class="col-md-8 ">
                     <div class="card">
                         <div class="card-header">
@@ -164,7 +172,7 @@
 
         {{-- Activate --}}
         @if ($user->status == 13)
-            <div class="row justify-content-center">
+            <div class="row">
                 <div class="col-md-8 ">
                     <div class="card">
                         <div class="card-header">

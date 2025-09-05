@@ -192,6 +192,7 @@ class AuthController extends Controller
         return redirect()->back()->with('success', 'Password changed successfully.');
     }
 
+
     public function deleteAccount(Request $request)
     {
         $rules = ([

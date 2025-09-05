@@ -10,13 +10,13 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CompanyWelcomeEmail extends Mailable
+class AccountDeactivatedEmail extends Mailable
 {
-    use Queueable, SerializesModels; 
+    use Queueable, SerializesModels;
 
     public $user;
 
-    /** 
+    /**
      * Create a new message instance.
      */
     public function __construct(User $user)
@@ -31,7 +31,7 @@ class CompanyWelcomeEmail extends Mailable
     {
         return new Envelope(
             from: config('mail.from.address'),
-            subject: 'Welcome to ' . config('app.name'),
+            subject: 'Your ' . config('app.name') . ' Account Has Been Deactivated.',
         );
     }
 
@@ -41,7 +41,7 @@ class CompanyWelcomeEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.company.welcome',
+            markdown: 'emails.account_deactivated',
             with: ['user' => $this->user]
         );
     }

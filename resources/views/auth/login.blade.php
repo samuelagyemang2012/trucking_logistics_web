@@ -15,7 +15,7 @@
                     <div>
                         <div class="card">
                             {{-- login errors --}}
-                            @if ($errors->any())
+                            {{-- @if ($errors->any())
                                 <div class="alert">
                                     <ul class="list-group">
                                         @foreach ($errors->all() as $error)
@@ -23,7 +23,7 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                            @endif
+                            @endif --}}
                             {{--  --}}
 
                             {{-- successul registration --}}
@@ -73,7 +73,7 @@
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <img src="{{asset('images/logo.png')}}" alt="">
+                                        <img src="{{ asset('images/logo.png') }}" alt="">
                                         <h3 class="">Welcome</h3>
                                         <h5 class="text-secondary">Sign in to your dashboard</h5>
                                     </div><!--end col-->
@@ -88,15 +88,27 @@
                                         {{-- email --}}
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" name="email"
-                                                aria-describedby="emailHelp" placeholder="E.g. example@gmail.com" required>
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                                name="email" aria-describedby="emailHelp"
+                                                placeholder="E.g. example@gmail.com" required>
+                                            @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
                                         {{-- password --}}
                                         <div class="mb-3">
                                             <label for="password" class="form-label">Password</label>
-                                            <input type="password" class="form-control" name="password"
+                                            <input type="password"
+                                                class="form-control @error('password') is-invalid @enderror" name="password"
                                                 placeholder="Password" required>
+                                            @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
                                         <div class="mb-3">
@@ -107,11 +119,11 @@
                                         {{-- <div class="container"> --}}
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <button type="submit"
-                                                    class="btn btn-primary btn-lg">Login</button>
+                                                <button type="submit" class="btn btn-dark btn-lg">Login</button>
                                             </div>
                                             <div class="col-sm-6">
-                                                <p><a href="{{ route('password.request') }}">Forgot password?</a></p>
+                                                <p><a class="text-dark" href="{{ route('password.request') }}">Forgot
+                                                        password?</a></p>
                                             </div>
                                         </div>
 
@@ -131,7 +143,7 @@
                                                 <p class="text-secondary">Don't have an account?</p>
                                             </div>
                                             <div class="col-sm-4">
-                                                <a class="btn btn-primary"
+                                                <a class="btn btn-dark btn-sm"
                                                     href="{{ route('show.company.register') }}">Register
                                                     Here</a>
 

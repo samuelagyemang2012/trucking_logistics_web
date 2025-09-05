@@ -31,13 +31,13 @@
                                 <form action="" method="get">
                                     <div>
                                         <span class="" id="ragisterDate">Please upload a <span
-                                                class="badge bg-primary-subtle text-primary">.csv</span> or <span
-                                                class="badge bg-primary-subtle text-primary">.xlsx</span> file for bulk
+                                                class="badge bg-dark-subtle text-dark">.csv</span> or <span
+                                                class="badge bg-dark-subtle text-dark">.xlsx</span> file for bulk
                                             addition
                                         </span>
                                     </div>
                                     {{-- select --}}
-                                    <label class="btn btn-outline-dark rounded-pill">
+                                    <label class="btn btn-outline-dark">
                                         Select file
                                         <input type="file" name="bulk_insert" hidden="">
                                     </label>
@@ -45,7 +45,7 @@
                                     <span>OR</span>
 
                                     {{-- donwnload --}}
-                                    <a href="" class="btn btn-outline-dark rounded-pill" name="bulk_insert">Download
+                                    <a href="" class="btn btn-outline-dark " name="bulk_insert">Download
                                         template</a>
                                     {{-- donwnload template --}}
                                     {{-- end form --}}
@@ -56,7 +56,7 @@
                     </div>
                     <hr>
                     <div>
-                        <button type="submit" class="btn btn-dark rounded-pill" name="bulk_insert">Upload data</button>
+                        <button type="submit" class="btn btn-dark" name="bulk_insert">Upload data</button>
                     </div>
                     </form>
 
@@ -87,16 +87,16 @@
                             <div class="col-sm-1"></div>
 
                             <div class="col-sm-1">
-                                <button class="btn btn-lg bg-dark text-white rounded-pill"> Save</button>
+                                <button class="btn btn-lg bg-dark text-white"> Save</button>
                             </div>
 
 
 
                             {{-- <div class="col-auto ms-auto"> --}}
                             <div class="col-sm-6">
-                                <div class="bg-primary-subtle p-2 border-dashed border-primary rounded">
-                                    <span class="text-primary fw-semibold">Note :</span><span
-                                        class="text-primary fw-normal"> if
+                                <div class="bg-dark-subtle p-2 border-dashed border-dark rounded">
+                                    <span class="text-dark fw-semibold">Note :</span><span
+                                        class="text-dark fw-normal"> if
                                         you want to data edit do double click on a table
                                         row.</span>
                                 </div>

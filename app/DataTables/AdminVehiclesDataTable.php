@@ -2,10 +2,11 @@
 
 namespace App\DataTables;
 
+use App\Models\AdminVehicle;
 use App\Models\Company;
+use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -15,59 +16,49 @@ use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use Illuminate\Support\Str;
 
-class VehiclesDataTable extends DataTable
+class AdminVehiclesDataTable extends DataTable
 {
-    /**
-     * Build the DataTable class.
-     *
-     * @param QueryBuilder<Vehicle> $query Results from query() method.
-     */
+
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->editColumn('type', function ($vehicle) {
-                return $vehicle->vehicle_type->name;
-            })
             ->editColumn('model', function ($vehicle) {
                 return Str::title($vehicle->model);
             })
-            ->editColumn('status_id', function ($vehicle) {
-
-                if ($vehicle->status->name == 'Available') {
+            ->editColumn('state', function ($vehicle) {
+                if ($vehicle->status->name  == 'Available') {
                     return '<span class="badge bg-success-subtle text-success">' . $vehicle->status->name . '</span>';
-                } elseif ($vehicle->status->name == 'Out of Service') {
-                    return '<span class="badge bg-danger-subtle text-danger">' . $vehicle->status->name . '</span>';
+                } elseif ($vehicle->status->name  == 'Out of Service') {
+                    return '<span class="badge bg-danger-subtle text-danger">' . $vehicle->status->name  . '</span>';
                 } elseif ($vehicle->status->name == 'In Use') {
                     return '<span class="badge bg-primary-subtle text-primary">' . $vehicle->status->name . '</span>';
                 } else {
-                    return '<span class="badge bg-secondary-subtle text-secondary">' . $vehicle->status->name . '</span>';
+                    return '<span class="badge bg-secondary-subtle text-secondary">' . $vehicle->status->name  . '</span>';
                 }
             })
-
-            ->addColumn('action',  function ($vehicle) {
+            ->addColumn('action',  function ($user) {
                 $btn = "<div class='btn-group' role='group'>";
-                $btn .= "<button class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#editVehicle' onclick='get_vehicle(\"{$vehicle->id}\")'><i class='las la-pen fs-18'></i></button>";
-                $btn .= "<button class='btn btn-sm btn-outline-danger' data-bs-toggle='modal' data-bs-target='#deleteVehicle' onclick='delete_vehicle(\"{$vehicle->id}\")'><i class='las la-trash fs-18'></i></button>";
+                $btn .= "<a class='btn btn-sm btn-outline-dark' href=''><i class='las la-box fs-18'></i></a>";
+                // $btn .= "<a class='btn btn-sm btn-outline-primary' href='/admin/users/customers/" . $user->id . "'><i class='las la-eye fs-18'></i></a>";
                 $btn .= "</div>";
 
                 return $btn;
             })
-            ->setRowId('id')
-            ->rawColumns(['status_id', 'action']);
+            ->setRowId('id') 
+            ->rawColumns(['state','action']);
     }
 
-    /**
-     * Get the query source of dataTable.
-     *
-     * @return QueryBuilder<Vehicle>
-     */
+
     public function query(Vehicle $model): QueryBuilder
     {
-        $user = Auth::user();
-        $company = Company::where('user_id', $user->id)->first();
-        // dd($company);
+        // $user = User::where(['id' => $this->uid])->first();
+        $company = Company::where(['user_id' => $this->id])->first();
 
-        return $model->newQuery()->where('company_id',$company->id);
+        return $model->newQuery()
+            ->select('model', 'status_id', 'number_plate', 'mileage', 'payload', 'manufacture_year', 'vehicle_types.name as type', 'statuses.name as state')
+            ->join('statuses', 'vehicles.status_id', '=', 'statuses.id')
+            ->join('vehicle_types', 'vehicles.type', '=', 'vehicle_types.id')
+            ->where('vehicles.company_id', '=', $company->id);
     }
 
     /**
@@ -76,7 +67,7 @@ class VehiclesDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('vehicles_table')
+            ->setTableId('adminvehicles-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
@@ -109,21 +100,19 @@ class VehiclesDataTable extends DataTable
     {
         return [
 
-
-            // Column::make('id'),
             Column::make('type'),
             Column::make('model'),
-            Column::make('registration_number'),
             Column::make('number_plate'),
             Column::make('mileage'),
             Column::make('payload'),
-            Column::make('manufacture_year')->title('Year'),
-            Column::make('status_id')->title('Status'),
+            Column::make('manufacture_year'),
+            Column::make('state')->title('Status'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
+
         ];
     }
 
@@ -132,6 +121,6 @@ class VehiclesDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Vehicles_' . date('YmdHis');
+        return 'AdminVehicles_' . date('YmdHis');
     }
 }

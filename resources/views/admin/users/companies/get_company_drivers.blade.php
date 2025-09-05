@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                    <h4 class="page-title">Manage Companies</h4>
+                    <h4 class="page-title">{{$name}}</h4>
 
                 </div><!--end page-title-box-->
             </div><!--end col-->
@@ -71,41 +71,41 @@
                 }, 1);
             });
 
-            function get_vehicle(id) {
+            // function get_vehicle(id) {
 
-                let xhr = new XMLHttpRequest();
-                let url = "/company/vehicles/" + id // Replace with your actual endpoint
+            //     let xhr = new XMLHttpRequest();
+            //     let url = "/company/vehicles/" + id // Replace with your actual endpoint
 
-                xhr.open("GET", url, true); // Use "POST" for sending data
+            //     xhr.open("GET", url, true); // Use "POST" for sending data
 
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            const response = JSON.parse(xhr.responseText);
-                            document.getElementById("vehicle_id").value = response['vehicle']['id'];
-                            document.getElementById("vehicle_type").value = response['vehicle']['type'];
-                            document.getElementById("model").value = response['vehicle']['model'];
-                            document.getElementById("registration_number").value = response['vehicle'][
-                                'registration_number'
-                            ]
-                            document.getElementById("number_plate").value = response['vehicle']['number_plate']
-                            document.getElementById("mileage").value = response['vehicle']['mileage']
-                            document.getElementById("payload").value = response['vehicle']['payload']
-                            document.getElementById("manufacture_year").value = response['vehicle']['manufacture_year']
-                            document.getElementById("vehicle_status").value = response['vehicle']['status_id']
+            //     xhr.onreadystatechange = function() {
+            //         if (xhr.readyState === XMLHttpRequest.DONE) {
+            //             if (xhr.status === 200) {
+            //                 const response = JSON.parse(xhr.responseText);
+            //                 document.getElementById("vehicle_id").value = response['vehicle']['id'];
+            //                 document.getElementById("vehicle_type").value = response['vehicle']['type'];
+            //                 document.getElementById("model").value = response['vehicle']['model'];
+            //                 document.getElementById("registration_number").value = response['vehicle'][
+            //                     'registration_number'
+            //                 ]
+            //                 document.getElementById("number_plate").value = response['vehicle']['number_plate']
+            //                 document.getElementById("mileage").value = response['vehicle']['mileage']
+            //                 document.getElementById("payload").value = response['vehicle']['payload']
+            //                 document.getElementById("manufacture_year").value = response['vehicle']['manufacture_year']
+            //                 document.getElementById("vehicle_status").value = response['vehicle']['status_id']
 
-                        } else {
-                            console.error("AJAX request failed: " + xhr.status);
-                        }
-                    }
-                };
+            //             } else {
+            //                 console.error("AJAX request failed: " + xhr.status);
+            //             }
+            //         }
+            //     };
 
-                xhr.send();
-            };
+            //     xhr.send();
+            // };
 
-            function delete_company(uid) {
-                document.getElementById("user_id").value = uid
-            }
+            // function delete_company(uid) {
+            //     document.getElementById("user_id").value = uid
+            // }
         </script>
 
         {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
